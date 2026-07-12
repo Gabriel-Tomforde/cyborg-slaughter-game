@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://xr8v7pmdrro8" path="res://assets/tileset_cyborg_slaughter.webp" id="1_tycba"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tycba"]
-load_path = "res://.godot/imported/v2_cyborg_slaughter.png-397a0c192b1cbe8d98b38a6d38da3d9d.ctex"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jtjjp"]
 texture = SubResource("CompressedTexture2D_tycba")
@@ -10958,7 +10957,7 @@ sources/1 = SubResource("TileSetAtlasSource_jtjjp")
 
 [sub_resource type="TileSet" id="TileSet_t36hm"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Game" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_jtjjp")

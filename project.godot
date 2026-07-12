@@ -11,5 +11,10 @@ config_version=5
 [application]
 
 config/name="Cyborg Slaughter Game"
+run/main_scene="uid://ilx0fw0b7501"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
