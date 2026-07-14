@@ -1,12 +1,8 @@
-[gd_scene load_steps=9 format=4 uid="uid://ilx0fw0b7501"]
+[gd_scene load_steps=6 format=4 uid="uid://ilx0fw0b7501"]
 
 [ext_resource type="PackedScene" uid="uid://ctofe0gi3cv1o" path="res://character/raven_sprite.tscn" id="1_uwrxv"]
-[ext_resource type="Texture2D" uid="uid://txf24d0vj81x" path="res://assets/floor_tiles_atlas.png" id="2_lbhrr"]
-[ext_resource type="Texture2D" uid="uid://d27h058xgml72" path="res://assets/wall_tiles_pipes_atlas.png" id="3_iywne"]
-[ext_resource type="Texture2D" uid="uid://bnuflk7d6l4ow" path="res://assets/wall_tiles_plain_atlas.png" id="4_p57ef"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lbhrr"]
-texture = ExtResource("2_lbhrr")
 texture_region_size = Vector2i(122, 126)
 0:0/0 = 0
 1:0/0 = 0
@@ -20,7 +16,6 @@ texture_region_size = Vector2i(122, 126)
 4:1/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iywne"]
-texture = ExtResource("4_p57ef")
 texture_region_size = Vector2i(127, 142)
 0:0/0 = 0
 1:0/0 = 0
@@ -33,7 +28,6 @@ texture_region_size = Vector2i(127, 142)
 2:2/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p57ef"]
-texture = ExtResource("3_iywne")
 texture_region_size = Vector2i(123, 143)
 0:0/0 = 0
 1:0/0 = 0
@@ -66,6 +60,6 @@ format = 2
 tile_map_data = PackedByteArray("AAD//wMAAAAAAAAAAAAGAAMAAAABAAAAAAD//woAAAABAAAAAAANAAMAAAADAAAAAAAGAAoAAAADAAAAAAAUAAMAAAAAAAAAAAD4/wMAAAABAAAAAAD4/woAAAAAAAAAAAANAAoAAAACAAAAAAAUAAoAAAACAAAAAAAbAAMAAAACAAAAAAAiAAMAAAACAAAAAAApAAMAAAACAAAAAAAbAAoAAAADAAAAAAAiAAoAAAACAAAAAAApAAoAAAAEAAAAAAAwAAMAAAAAAAAAAABEAAMAAAAAAAAAAAA3AAMAAAABAAAAAAA+AAMAAAACAAAAAAAwAAoAAAACAAAAAAA3AAoAAAADAAAAAAA+AAoAAAAEAAAAAABFAAoAAAAEAAAAAABMAAoAAAAAAAAAAABLAAMAAAACAAAAAAA=")
 tile_set = SubResource("TileSet_u5sy4")
 
-[node name="Layer0" type="TileMapLayer" parent="TileMap"]
+[node name="Layer1" type="TileMapLayer" parent="TileMap"]
 use_parent_material = true
 tile_set = SubResource("TileSet_u5sy4")
