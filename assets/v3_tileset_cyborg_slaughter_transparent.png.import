@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5no1rnlpsyr"
-path="res://.godot/imported/door_wall_pipes.png-2c63f5e7b8d1bee8a15599df478fa793.ctex"
+uid="uid://bihl411uuet4v"
+path="res://.godot/imported/v3_tileset_cyborg_slaughter_transparent.png-573e418587319fbd7251e1c48a10149e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/door_wall_pipes.png"
-dest_files=["res://.godot/imported/door_wall_pipes.png-2c63f5e7b8d1bee8a15599df478fa793.ctex"]
+source_file="res://assets/v3_tileset_cyborg_slaughter_transparent.png"
+dest_files=["res://.godot/imported/v3_tileset_cyborg_slaughter_transparent.png-573e418587319fbd7251e1c48a10149e.ctex"]
 
 [params]
 
