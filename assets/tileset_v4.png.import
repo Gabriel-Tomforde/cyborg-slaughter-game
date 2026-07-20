@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bihl411uuet4v"
-path="res://.godot/imported/v3_tileset_cyborg_slaughter_transparent.png-573e418587319fbd7251e1c48a10149e.ctex"
+uid="uid://ucn8adbeenir"
+path="res://.godot/imported/tileset_v4.png-91454f41a0609171de07fcb74b9e1498.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/v3_tileset_cyborg_slaughter_transparent.png"
-dest_files=["res://.godot/imported/v3_tileset_cyborg_slaughter_transparent.png-573e418587319fbd7251e1c48a10149e.ctex"]
+source_file="res://assets/tileset_v4.png"
+dest_files=["res://.godot/imported/tileset_v4.png-91454f41a0609171de07fcb74b9e1498.ctex"]
 
 [params]
 
