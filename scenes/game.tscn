@@ -3972,21 +3972,11 @@ tile_set = SubResource("TileSet_u5sy4")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
 
-[node name="Raven" parent="."]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-position = Vector2(36, -38)
-scale = Vector2(0.07, 0.07)
-script = null
-
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("WorldBoundaryShape2D_lbhrr")
+
+[node name="Raven" parent="." instance=ExtResource("3_lnu2h")]
+position = Vector2(0, -8.000015)
+scale = Vector2(0.4, 0.4)
