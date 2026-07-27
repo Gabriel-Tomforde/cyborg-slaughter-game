@@ -3973,11 +3973,11 @@ tile_set = SubResource("TileSet_u5sy4")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
 
-[node name="Raven" parent="." instance=ExtResource("3_lnu2h")]
-position = Vector2(36, -38)
-scale = Vector2(0.07, 0.07)
-
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("WorldBoundaryShape2D_lbhrr")
+
+[node name="Raven" parent="." instance=ExtResource("3_lnu2h")]
+position = Vector2(0, -8.000015)
+scale = Vector2(0.4, 0.4)
