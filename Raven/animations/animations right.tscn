@@ -1376,6 +1376,6 @@ animations = [{
 
 [node name="animations right" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_j3b22")
-animation = &"two handed swing right"
-frame_progress = 0.74414605
+animation = &"hurt right"
+frame_progress = 0.062643744
 flip_h = true
