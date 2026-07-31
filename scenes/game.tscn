@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=4 uid="uid://ilx0fw0b7501"]
 
 [ext_resource type="Texture2D" uid="uid://ucn8adbeenir" path="res://assets/tileset_v4.png" id="1_yqjtg"]
-[ext_resource type="PackedScene" uid="uid://gg31xw3nbu3x" path="res://scenes/raven.tscn" id="3_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://gg31xw3nbu3x" path="res://Raven/raven.tscn" id="3_lnu2h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
 texture = ExtResource("1_yqjtg")
@@ -3971,7 +3971,7 @@ tile_map_data = PackedByteArray("AAD3/+r/AQBCAAMAAAD3/+v/AQBCAAQAAAD3/+z/AQBCAAU
 tile_set = SubResource("TileSet_u5sy4")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4, 4)
+zoom = Vector2(0.5, 0.5)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

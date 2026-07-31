@@ -415,8 +415,8 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("35_wyeto")
 }],
-"loop": true,
-"name": &"arm cannon left",
+"loop": false,
+"name": &"arm cannon",
 "speed": 30.0
 }, {
 "frames": [{
@@ -495,8 +495,8 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("60_wji18")
 }],
-"loop": true,
-"name": &"dash left",
+"loop": false,
+"name": &"dash",
 "speed": 30.0
 }, {
 "frames": [{
@@ -575,8 +575,8 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("85_bj2ac")
 }],
-"loop": true,
-"name": &"die left",
+"loop": false,
+"name": &"die",
 "speed": 30.0
 }, {
 "frames": [{
@@ -625,8 +625,8 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("100_3geb2")
 }],
-"loop": true,
-"name": &"grab left",
+"loop": false,
+"name": &"grab",
 "speed": 30.0
 }, {
 "frames": [{
@@ -720,8 +720,8 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("130_lhw1a")
 }],
-"loop": true,
-"name": &"hut left",
+"loop": false,
+"name": &"hurt",
 "speed": 30.0
 }, {
 "frames": [{
@@ -861,7 +861,7 @@ animations = [{
 "texture": ExtResource("175_ld86k")
 }],
 "loop": true,
-"name": &"idle left",
+"name": &"idle",
 "speed": 30.0
 }, {
 "frames": [{
@@ -925,8 +925,8 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("195_iawkv")
 }],
-"loop": true,
-"name": &"jump left",
+"loop": false,
+"name": &"jump",
 "speed": 30.0
 }, {
 "frames": [{
@@ -1020,8 +1020,8 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("225_0llcn")
 }],
-"loop": true,
-"name": &"kick left",
+"loop": false,
+"name": &"kick",
 "speed": 30.0
 }, {
 "frames": [{
@@ -1055,8 +1055,8 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("235_jukhs")
 }],
-"loop": true,
-"name": &"one handed swing left",
+"loop": false,
+"name": &"one handed swing",
 "speed": 30.0
 }, {
 "frames": [{
@@ -1123,8 +1123,8 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("256_yrleg")
 }],
-"loop": true,
-"name": &"punch left",
+"loop": false,
+"name": &"punch",
 "speed": 30.0
 }, {
 "frames": [{
@@ -1219,7 +1219,7 @@ animations = [{
 "texture": ExtResource("286_qdpkl")
 }],
 "loop": true,
-"name": &"run left",
+"name": &"run",
 "speed": 30.0
 }, {
 "frames": [{
@@ -1283,14 +1283,13 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("306_hsm6m")
 }],
-"loop": true,
-"name": &"two handed swing left",
+"loop": false,
+"name": &"two handed swing",
 "speed": 30.0
 }]
 
-[node name="animations left" type="Node2D"]
+[node name="AnimationsLeft" type="Node2D"]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="LeftAnimations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_d7hek")
-animation = &"arm cannon left"
-frame_progress = 0.090568826
+animation = &"two handed swing"
