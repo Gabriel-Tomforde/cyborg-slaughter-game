@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://gg31xw3nbu3x"]
+
+[ext_resource type="PackedScene" uid="uid://8vd3rosyxywh" path="res://Raven/animations/animations right.tscn" id="1_evje6"]
+[ext_resource type="Script" uid="uid://bwo3naydl2loy" path="res://Raven/raven.gd" id="1_q0iu1"]
+[ext_resource type="PackedScene" uid="uid://dmbk2bhifywnf" path="res://Raven/animations/animations_left.tscn" id="2_2p6f2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q0iu1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bt4hg"]
+size = Vector2(53, 413)
+
+[node name="Raven" type="CharacterBody2D"]
+script = ExtResource("1_q0iu1")
+
+[node name="SpriteRight" parent="." instance=ExtResource("1_evje6")]
+position = Vector2(5, -11)
+
+[node name="SpriteLeft" parent="." instance=ExtResource("2_2p6f2")]
+position = Vector2(-20, -15)
+
+[node name="HitboxArea2D" type="Area2D" parent="."]
+position = Vector2(107, 4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxArea2D"]
+shape = SubResource("RectangleShape2D_q0iu1")
+
+[node name="ComboTimer" type="Timer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(28, 54)
+shape = SubResource("RectangleShape2D_bt4hg")
