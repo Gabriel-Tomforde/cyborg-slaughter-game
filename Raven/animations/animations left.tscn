@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmbk2bhifywnf"]
+
+[ext_resource type="SpriteFrames" uid="uid://d0ckmrrrr07cn" path="res://Raven/animations/animations left.tres" id="1_4vn0r"]
+
+[node name="animations left" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_4vn0r")
+animation = &"idle left"
+autoplay = "idle left"
