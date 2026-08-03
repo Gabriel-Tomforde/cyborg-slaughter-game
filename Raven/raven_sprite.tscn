@@ -1,0 +1,61 @@
+[gd_scene load_steps=10 format=3 uid="uid://b66eys65kw5n4"]
+
+[ext_resource type="Script" uid="uid://b68ppdj7ysfts" path="res://scripting/player.gd" id="1_o0hj2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eji3e"]
+radius = 6.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1wi7f"]
+animations = []
+
+[sub_resource type="Animation" id="Animation_1wi7f"]
+resource_name = "attack_1"
+
+[sub_resource type="Animation" id="Animation_uthvo"]
+resource_name = "attack_2"
+
+[sub_resource type="Animation" id="Animation_ymbcj"]
+resource_name = "attack_3"
+
+[sub_resource type="Animation" id="Animation_eji3e"]
+resource_name = "idle_animation"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m8ygl"]
+_data = {
+&"attack_1": SubResource("Animation_1wi7f"),
+&"attack_2": SubResource("Animation_uthvo"),
+&"attack_3": SubResource("Animation_ymbcj"),
+&"idle_animation": SubResource("Animation_eji3e")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4nxf5"]
+size = Vector2(9, 8)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("1_o0hj2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_eji3e")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player/CollisionShape2D"]
+position = Vector2(0, -5)
+sprite_frames = SubResource("SpriteFrames_1wi7f")
+animation = &""
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+libraries = {
+&"": SubResource("AnimationLibrary_m8ygl")
+}
+
+[node name="HitboxArea2D" type="Area2D" parent="Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/HitboxArea2D"]
+position = Vector2(7.5, -5)
+shape = SubResource("RectangleShape2D_4nxf5")
+
+[node name="ComboTimer" type="Timer" parent="Player"]
+
+[connection signal="area_entered" from="Player/HitboxArea2D" to="Player" method="_on_hitbox_area_2d_area_entered"]
