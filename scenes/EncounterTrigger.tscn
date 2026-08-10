@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhd4r65y6lpfd"]
+
+[ext_resource type="Script" uid="uid://s0v70c7jj0r7" path="res://scenes/encounter_trigger.gd" id="1_ysfyx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2m20"]
+size = Vector2(982, 631.5)
+
+[node name="EncounterTrigger" type="Area2D" node_paths=PackedStringArray("spawn_points")]
+script = ExtResource("1_ysfyx")
+spawn_points = [NodePath("SpawnPoint1"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(495, 316.25)
+shape = SubResource("RectangleShape2D_g2m20")
+
+[node name="SpawnPoint1" type="Marker2D" parent="."]
+position = Vector2(368, 449)
+gizmo_extents = 20.0
+
+[node name="SpawnPoint2" type="Marker2D" parent="."]
+position = Vector2(660, 324)
+gizmo_extents = 20.0
+
+[node name="SpawnPoint3" type="Marker2D" parent="."]
+position = Vector2(903, 558)
+gizmo_extents = 20.0
