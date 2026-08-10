@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 160.0
+const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
 
 # ---------------------------------------------------------
@@ -25,6 +25,7 @@ const JUMP_VELOCITY = -300.0
 # ---------------------------------------------------------
 
 @onready var hitbox: Area2D = $HitboxArea2D
+@onready var hitbox_shape: CollisionShape2D = $HitboxArea2D/CollisionShape2D
 @onready var combo_timer: Timer = $ComboTimer
 @onready var sprite_left: AnimatedSprite2D = $SpriteLeft/LeftAnimations
 @onready var sprite_right: AnimatedSprite2D = $SpriteRight/RightAnimations
@@ -37,11 +38,17 @@ var combo_step: int = 0
 var is_attacking: bool = false
 var attack_queued: bool = false
 var facing_right: bool = true
-var hitbox_offset_x: float = 0.0
+var current_hitbox_reach: float = 20.0  # kept in sync with facing even while not attacking
 
 # Adjust these three to match your teammate's exact animation names.
 const ATTACK_ANIMS := ["punch", "kick", "two handed swing"]
-const UNARMED_DAMAGE := [3, 3, 5]  # damage for hits 1, 2, 3
+const UNARMED_DAMAGE := [3, 5, 10]  # damage for hits 1, 2, 3
+
+# How far in front of Raven the hitbox sits for each attack, and how big
+# it is. Punch is short-range, kick reaches farther, the swing reaches
+# farthest and is a bit wider too. Tweak freely to match the animations.
+const ATTACK_REACH := [20.0, 40.0, 45.0]                       # x-distance from center
+const ATTACK_HITBOX_SIZE := [Vector2(16, 20), Vector2(28, 20), Vector2(40, 30)]  # width, height
 
 
 func _ready() -> void:
@@ -53,7 +60,6 @@ func _ready() -> void:
 
 	hitbox.monitoring = false
 	hitbox.visible = false
-	hitbox_offset_x = abs(hitbox.position.x)
 
 	_face_direction(1.0)  # start facing right
 	_get_active_sprite().play("idle")
@@ -97,7 +103,7 @@ func _face_direction(direction: float) -> void:
 	sprite_left.visible = not facing_right
 	sprite_right_root.visible = facing_right
 	sprite_left_root.visible = not facing_right
-	hitbox.position.x = hitbox_offset_x if facing_right else -hitbox_offset_x
+	hitbox.position.x = current_hitbox_reach if facing_right else -current_hitbox_reach
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -119,7 +125,19 @@ func _start_attack(step: int) -> void:
 
 	var anim_name: String = ATTACK_ANIMS[step - 1]
 	_get_active_sprite().play(anim_name)
+	_update_hitbox_for_attack(step)
 	enable_hitbox()
+
+
+func _update_hitbox_for_attack(step: int) -> void:
+	var reach: float = ATTACK_REACH[step - 1]
+	current_hitbox_reach = reach
+	hitbox.position.x = reach if facing_right else -reach
+
+	if hitbox_shape.shape is RectangleShape2D:
+		hitbox_shape.shape.size = ATTACK_HITBOX_SIZE[step - 1]
+	else:
+		push_warning("HitboxArea2D's CollisionShape2D needs a RectangleShape2D for per-attack sizing to work.")
 
 
 func _on_animation_finished(sprite: AnimatedSprite2D) -> void:
@@ -127,6 +145,7 @@ func _on_animation_finished(sprite: AnimatedSprite2D) -> void:
 		return  # ignore the inactive (hidden) sprite's signal
 
 	var anim_name: String = sprite.animation
+
 	if anim_name not in ATTACK_ANIMS:
 		return
 
