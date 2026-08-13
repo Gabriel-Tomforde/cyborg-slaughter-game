@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=4 uid="uid://ilx0fw0b7501"]
+[gd_scene load_steps=11 format=4 uid="uid://ilx0fw0b7501"]
 
 [ext_resource type="Texture2D" uid="uid://bpmkbjtri6l4d" path="res://assets/building_background.png" id="1_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://ucn8adbeenir" path="res://assets/tileset_v4.png" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://gg31xw3nbu3x" path="res://Raven/raven.tscn" id="3_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://dhd4r65y6lpfd" path="res://scenes/EncounterTrigger.tscn" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://dnxiarhwb24hb" path="res://scenes/enemyai.tscn" id="5_p57ef"]
+[ext_resource type="Script" uid="uid://cgr3eqeyf4tc5" path="res://scenes/health_bar.gd" id="6_p57ef"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lbhrr"]
 texture = ExtResource("1_lnu2h")
@@ -7853,3 +7854,21 @@ enemy_scene = ExtResource("5_p57ef")
 [node name="EncounterTrigger2" parent="." instance=ExtResource("4_iywne")]
 position = Vector2(4064, -131)
 enemy_scene = ExtResource("5_p57ef")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 270.0
+offset_bottom = 25.0
+script = ExtResource("6_p57ef")
+
+[node name="ProgressBar" type="ProgressBar" parent="HUD/HealthBar"]
+modulate = Color(0.94293475, 0.07757471, 0.12483644, 1)
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 277.0
+offset_bottom = 37.0
+value = 100.0

@@ -1,6 +1,9 @@
 extends CharacterBody2D
 
-const SPEED = 130.0
+signal health_changed(current_health: int, max_health: int)
+signal died
+
+const SPEED = 160.0
 const JUMP_VELOCITY = -300.0
 
 # ---------------------------------------------------------
@@ -33,25 +36,31 @@ const JUMP_VELOCITY = -300.0
 @onready var sprite_right_root: Node2D = $SpriteRight
 
 @export var combo_window: float = 0.6  # seconds allowed to chain into the next hit
+@export var max_health: int = 100
 
 var combo_step: int = 0
 var is_attacking: bool = false
 var attack_queued: bool = false
 var facing_right: bool = true
 var current_hitbox_reach: float = 20.0  # kept in sync with facing even while not attacking
+var health: int
+var is_dead: bool = false
 
 # Adjust these three to match your teammate's exact animation names.
 const ATTACK_ANIMS := ["punch", "kick", "two handed swing"]
-const UNARMED_DAMAGE := [3, 5, 10]  # damage for hits 1, 2, 3
+const UNARMED_DAMAGE := [3, 3, 5]  # damage for hits 1, 2, 3
 
 # How far in front of Raven the hitbox sits for each attack, and how big
 # it is. Punch is short-range, kick reaches farther, the swing reaches
 # farthest and is a bit wider too. Tweak freely to match the animations.
-const ATTACK_REACH := [20.0, 40.0, 45.0]                       # x-distance from center
+const ATTACK_REACH := [100.0, 140.0, 110.0]                    # x-distance from center
 const ATTACK_HITBOX_SIZE := [Vector2(16, 20), Vector2(28, 20), Vector2(40, 30)]  # width, height
 
 
 func _ready() -> void:
+	health = max_health
+	health_changed.emit(health, max_health)
+
 	combo_timer.one_shot = true
 	combo_timer.wait_time = combo_window
 
@@ -66,6 +75,13 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if is_dead:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		if not is_on_floor():
+			velocity += get_gravity() * delta
+		move_and_slide()
+		return
+
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -112,6 +128,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _try_attack() -> void:
+	if is_dead:
+		return
 	if not is_attacking:
 		_start_attack(1)
 	elif combo_step < ATTACK_ANIMS.size():
@@ -179,3 +197,24 @@ func _on_hitbox_area_2d_area_entered(area: Area2D) -> void:
 	var target := area.get_parent()
 	if target.has_method("take_damage"):
 		target.take_damage(UNARMED_DAMAGE[combo_step - 1])
+
+
+func take_damage(amount: int) -> void:
+	if is_dead:
+		return
+
+	health = max(health - amount, 0)
+	health_changed.emit(health, max_health)
+
+	if health <= 0:
+		_die()
+
+
+func _die() -> void:
+	is_dead = true
+	is_attacking = false
+	disable_hitbox()
+	_get_active_sprite().play("die")
+	died.emit()
+	# Add whatever should happen next here later - a game over screen,
+	# disabling input permanently, a respawn, etc.

@@ -38,7 +38,7 @@ enum State { IDLE, CHASE, ATTACK }
 @export var move_speed: float = 80.0
 @export var attack_range: float = 180.0   # how close before it stops and swings
 @export var attack_cooldown: float = 1.0  # seconds between combos (not between individual hits)
-@export var max_health: int = 30
+@export var max_health: int = 50
 
 const IDLE_ANIM := "idle"
 const WALK_ANIM := "run"
@@ -47,7 +47,7 @@ const WALK_ANIM := "run"
 # AI just plays through all three automatically once it starts attacking,
 # no input needed to chain them.
 const ATTACK_ANIMS := ["Punch", "Kick", "Two handed swing"]
-const ATTACK_DAMAGE := [8, 10, 15]  # damage for hits 1, 2, 3
+const ATTACK_DAMAGE := [3, 3, 5]  # damage for hits 1, 2, 3
 
 # How far in front of the enemy the hitbox sits for each attack, and how
 # big it is. Punch is short-range, kick reaches over twice as far. Tweak
@@ -61,6 +61,7 @@ var health: int
 var can_attack: bool = true
 var facing_right: bool = true
 var combo_step: int = 0
+var is_dead: bool = false
 
 
 func _ready() -> void:
@@ -83,12 +84,16 @@ func _ready() -> void:
 	# so explicitly check for that case once physics catches up.
 	await get_tree().physics_frame
 	_check_for_already_present_player()
-	print(name, " ready. State: ", state)
 
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+
+	if is_dead:
+		velocity.x = 0
+		move_and_slide()
+		return
 
 	match state:
 		State.IDLE:
@@ -101,11 +106,9 @@ func _physics_process(delta: float) -> void:
 				return
 
 			var distance := global_position.distance_to(player.global_position)
-			print(name, " distance to player: ", distance, " | attack_range: ", attack_range)
 
 			if distance <= attack_range:
 				velocity = Vector2.ZERO
-				print(name, " IN RANGE. can_attack: ", can_attack)
 				if can_attack:
 					_start_combo()
 			else:
@@ -132,14 +135,12 @@ func _face_direction(direction: float) -> void:
 
 
 func _start_combo() -> void:
-	print(name, " STARTING COMBO")
 	state = State.ATTACK
 	can_attack = false
 	_play_attack(1)
 
 
 func _play_attack(step: int) -> void:
-	print(name, " playing attack step ", step, ": '", ATTACK_ANIMS[step - 1], "'")
 	combo_step = step
 	sprite.play(ATTACK_ANIMS[step - 1])
 	_update_hitbox_for_attack(step)
@@ -157,6 +158,10 @@ func _update_hitbox_for_attack(step: int) -> void:
 
 
 func _on_animation_finished() -> void:
+	if sprite.animation == "Die":
+		queue_free()
+		return
+
 	if sprite.animation not in ATTACK_ANIMS:
 		return
 
@@ -179,12 +184,10 @@ func _end_combo() -> void:
 # ---------------------------------------------------------
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
-	print(name, " DetectionArea saw: ", body.name, " | groups: ", body.get_groups())
 	if body.is_in_group("player"):
 		player = body
 		if state == State.IDLE:
 			state = State.CHASE
-			print(name, " now chasing.")
 
 
 func _check_for_already_present_player() -> void:
@@ -193,7 +196,6 @@ func _check_for_already_present_player() -> void:
 			player = body
 			if state == State.IDLE:
 				state = State.CHASE
-				print(name, " player was already in range at spawn - chasing.")
 			return
 
 
@@ -202,7 +204,6 @@ func _on_detection_area_body_exited(body: Node2D) -> void:
 		player = null
 		if state != State.ATTACK:
 			state = State.IDLE
-		print(name, " lost the player, back to idle (unless mid-attack).")
 
 
 # ---------------------------------------------------------
@@ -230,6 +231,17 @@ func _on_hitbox_area_2d_area_entered(area: Area2D) -> void:
 # ---------------------------------------------------------
 
 func take_damage(amount: int) -> void:
+	if is_dead:
+		return
+
 	health -= amount
 	if health <= 0:
-		queue_free()  # swap this for a death animation later if you want
+		_die()
+
+
+func _die() -> void:
+	is_dead = true
+	state = State.IDLE
+	can_attack = false
+	disable_hitbox()
+	sprite.play("Die")
