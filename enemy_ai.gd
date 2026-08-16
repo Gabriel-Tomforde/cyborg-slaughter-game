@@ -1,43 +1,66 @@
 extends CharacterBody2D
 
 # ---------------------------------------------------------
-# SIMPLE ENEMY AI: Idle -> Chase -> Attack
+# ENEMY AI: Idle -> Chase -> Attack (3-hit combo)
 # ---------------------------------------------------------
-# Node setup expected (adjust @onready paths if yours differ):
+# Node setup expected:
 #
 # Enemy (CharacterBody2D)                <- this script
 # ├── CollisionShape2D                   (physical body collider)
-# ├── Sprite2D
-# ├── AnimationPlayer                    (animations: "idle", "walk", "attack")
+# ├── AnimatedSprite2D                   (single sprite - flipped via flip_h)
 # ├── DetectionArea (Area2D)             <- notices the player from a distance
 # │   └── CollisionShape2D (CircleShape2D, large radius)
 # ├── HurtboxArea2D (Area2D)             <- lets the PLAYER's hitbox damage this enemy
 # │   └── CollisionShape2D
-# ├── HitboxArea2D (Area2D)              <- this enemy's own attack, damages the player
+# ├── HitboxArea2D (Area2D)              <- this enemy's own attacks, damage the player
 # │   └── CollisionShape2D
 # └── AttackCooldownTimer (Timer)
 #
 # Your player node needs to be in the "player" group (Node > Groups tab)
-# so this script can recognize it. It also needs a take_damage(amount)
-# method for this enemy's attacks to actually do anything - flagged below.
+# so this script can recognize it.
+#
+# Attack animation names must match exactly what's in your enemy's
+# SpriteFrames (capitalization/spacing included).
+#
+# This assumes the sprite's default art faces RIGHT. If your art
+# defaults to facing LEFT instead, flip the flip_h logic in
+# _face_direction() (flagged with a comment below).
 # ---------------------------------------------------------
 
 enum State { IDLE, CHASE, ATTACK }
 
-@onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var hitbox: Area2D = $HitboxArea2D
+@onready var hitbox_shape: CollisionShape2D = $HitboxArea2D/CollisionShape2D
+@onready var detection_area: Area2D = $DetectionArea
 @onready var attack_cooldown_timer: Timer = $AttackCooldownTimer
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 @export var move_speed: float = 80.0
-@export var attack_range: float = 40.0    # how close before it stops and swings
-@export var attack_cooldown: float = 1.0  # seconds between attacks
-@export var damage: int = 8
+@export var attack_range: float = 180.0   # how close before it stops and swings
+@export var attack_cooldown: float = 1.0  # seconds between combos (not between individual hits)
 @export var max_health: int = 30
+
+const IDLE_ANIM := "idle"
+const WALK_ANIM := "run"
+
+# The 3-hit combo, same idea as Raven's - unlike Raven though, the enemy
+# AI just plays through all three automatically once it starts attacking,
+# no input needed to chain them.
+const ATTACK_ANIMS := ["Punch", "Kick", "Two handed swing"]
+const ATTACK_DAMAGE := [8, 10, 15]  # damage for hits 1, 2, 3
+
+# How far in front of the enemy the hitbox sits for each attack, and how
+# big it is. Punch is short-range, kick reaches over twice as far. Tweak
+# these numbers freely to match how the animations actually look.
+const ATTACK_REACH := [20.0, 45.0, 35.0]                       # x-distance from center
+const ATTACK_HITBOX_SIZE := [Vector2(16, 20), Vector2(30, 18), Vector2(38, 26)]  # width, height
 
 var state: State = State.IDLE
 var player: Node2D = null
 var health: int
 var can_attack: bool = true
+var facing_right: bool = true
+var combo_step: int = 0
 
 
 func _ready() -> void:
@@ -47,17 +70,30 @@ func _ready() -> void:
 	attack_cooldown_timer.wait_time = attack_cooldown
 	attack_cooldown_timer.timeout.connect(func(): can_attack = true)
 
-	anim_player.animation_finished.connect(_on_animation_finished)
+	sprite.animation_finished.connect(_on_animation_finished)
 
 	hitbox.monitoring = false
 	hitbox.visible = false
 
+	_face_direction(1.0)  # start facing right
+	sprite.play(IDLE_ANIM)
+
+	# body_entered won't fire if the player is ALREADY inside the detection
+	# radius the moment this enemy spawns (e.g. right as an ambush starts) -
+	# so explicitly check for that case once physics catches up.
+	await get_tree().physics_frame
+	_check_for_already_present_player()
+	print(name, " ready. State: ", state)
+
 
 func _physics_process(delta: float) -> void:
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+
 	match state:
 		State.IDLE:
 			velocity = Vector2.ZERO
-			anim_player.play("idle")
+			sprite.play(IDLE_ANIM)
 
 		State.CHASE:
 			if player == null:
@@ -65,35 +101,77 @@ func _physics_process(delta: float) -> void:
 				return
 
 			var distance := global_position.distance_to(player.global_position)
+			print(name, " distance to player: ", distance, " | attack_range: ", attack_range)
 
 			if distance <= attack_range:
 				velocity = Vector2.ZERO
+				print(name, " IN RANGE. can_attack: ", can_attack)
 				if can_attack:
-					_start_attack()
+					_start_combo()
 			else:
-				var direction := (player.global_position - global_position).normalized()
+				var to_player := player.global_position - global_position
+				var direction := to_player.normalized()
 				velocity = direction * move_speed
-				$Sprite2D.flip_h = direction.x < 0
-				anim_player.play("walk")
+				_face_direction(sign(to_player.x))
+				sprite.play(WALK_ANIM)
 
 		State.ATTACK:
-			velocity = Vector2.ZERO  # stand still while swinging
+			velocity = Vector2.ZERO  # stand still through the whole combo
 
 	move_and_slide()
 
 
-func _start_attack() -> void:
+func _face_direction(direction: float) -> void:
+	if direction > 0:
+		facing_right = true
+	elif direction < 0:
+		facing_right = false
+
+	# Flip the sprite. The default art faces LEFT, so flip when facing right.
+	sprite.flip_h = facing_right
+
+
+func _start_combo() -> void:
+	print(name, " STARTING COMBO")
 	state = State.ATTACK
 	can_attack = false
-	anim_player.play("attack")
-	attack_cooldown_timer.start()
+	_play_attack(1)
 
 
-func _on_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "attack":
-		# Swing is done - go back to chasing (this re-checks distance next frame,
-		# so it'll immediately attack again once the cooldown timer allows it).
-		state = State.CHASE if player != null else State.IDLE
+func _play_attack(step: int) -> void:
+	print(name, " playing attack step ", step, ": '", ATTACK_ANIMS[step - 1], "'")
+	combo_step = step
+	sprite.play(ATTACK_ANIMS[step - 1])
+	_update_hitbox_for_attack(step)
+	enable_hitbox()
+
+
+func _update_hitbox_for_attack(step: int) -> void:
+	var reach: float = ATTACK_REACH[step - 1]
+	hitbox.position.x = reach if facing_right else -reach
+
+	if hitbox_shape.shape is RectangleShape2D:
+		hitbox_shape.shape.size = ATTACK_HITBOX_SIZE[step - 1]
+	else:
+		push_warning("HitboxArea2D's CollisionShape2D needs a RectangleShape2D for per-attack sizing to work.")
+
+
+func _on_animation_finished() -> void:
+	if sprite.animation not in ATTACK_ANIMS:
+		return
+
+	disable_hitbox()
+
+	if combo_step < ATTACK_ANIMS.size():
+		_play_attack(combo_step + 1)
+	else:
+		_end_combo()
+
+
+func _end_combo() -> void:
+	combo_step = 0
+	state = State.CHASE if player != null else State.IDLE
+	attack_cooldown_timer.start()  # cooldown applies between whole combos, not individual hits
 
 
 # ---------------------------------------------------------
@@ -101,23 +179,35 @@ func _on_animation_finished(anim_name: StringName) -> void:
 # ---------------------------------------------------------
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
+	print(name, " DetectionArea saw: ", body.name, " | groups: ", body.get_groups())
 	if body.is_in_group("player"):
 		player = body
 		if state == State.IDLE:
 			state = State.CHASE
+			print(name, " now chasing.")
+
+
+func _check_for_already_present_player() -> void:
+	for body in detection_area.get_overlapping_bodies():
+		if body.is_in_group("player"):
+			player = body
+			if state == State.IDLE:
+				state = State.CHASE
+				print(name, " player was already in range at spawn - chasing.")
+			return
 
 
 func _on_detection_area_body_exited(body: Node2D) -> void:
 	if body == player:
 		player = null
-		state = State.IDLE
+		if state != State.ATTACK:
+			state = State.IDLE
+		print(name, " lost the player, back to idle (unless mid-attack).")
 
 
 # ---------------------------------------------------------
 # HITBOX CONTROL (attacking the player)
 # ---------------------------------------------------------
-# Add Call Method track keys in the "attack" animation to call these
-# at the right frames, same as we did for the player's combo.
 
 func enable_hitbox() -> void:
 	hitbox.monitoring = true
@@ -131,19 +221,13 @@ func disable_hitbox() -> void:
 
 func _on_hitbox_area_2d_area_entered(area: Area2D) -> void:
 	var target := area.get_parent()
-	# This calls take_damage() on the player - you'll need to add that
-	# method to your player script (with a matching HurtboxArea2D) for
-	# this to actually deal damage. Flagging this so it doesn't error silently.
 	if target.has_method("take_damage"):
-		target.take_damage(damage)
+		target.take_damage(ATTACK_DAMAGE[combo_step - 1])
 
 
 # ---------------------------------------------------------
 # TAKING DAMAGE (from the player's attacks)
 # ---------------------------------------------------------
-# Connect the player's HitboxArea2D area_entered signal to detect THIS
-# enemy's HurtboxArea2D - that's already handled on the player's side.
-# This just needs a take_damage() method for the player to call into.
 
 func take_damage(amount: int) -> void:
 	health -= amount
