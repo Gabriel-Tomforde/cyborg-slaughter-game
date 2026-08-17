@@ -38,7 +38,11 @@ enum State { IDLE, CHASE, ATTACK }
 @export var move_speed: float = 80.0
 @export var attack_range: float = 180.0   # how close before it stops and swings
 @export var attack_cooldown: float = 1.0  # seconds between combos (not between individual hits)
-@export var max_health: int = 50
+@export var max_health: int = 20
+
+# --- Battery drop ---
+@export var battery_pickup_scene: PackedScene  # assign BatteryPickup.tscn in the Inspector
+@export var battery_drop_chance: float = 0.5   # 0.5 = 50% chance to drop on death
 
 const IDLE_ANIM := "idle"
 const WALK_ANIM := "run"
@@ -245,3 +249,15 @@ func _die() -> void:
 	can_attack = false
 	disable_hitbox()
 	sprite.play("Die")
+	_maybe_drop_battery()
+
+
+func _maybe_drop_battery() -> void:
+	if battery_pickup_scene == null:
+		return  # not assigned - just skip silently, no drop
+	if randf() > battery_drop_chance:
+		return  # didn't roll a drop this time
+
+	var pickup := battery_pickup_scene.instantiate()
+	get_parent().add_child(pickup)
+	pickup.global_position = global_position

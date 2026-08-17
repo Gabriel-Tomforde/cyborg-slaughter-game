@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://ilx0fw0b7501"]
+[gd_scene load_steps=12 format=4 uid="uid://ilx0fw0b7501"]
 
 [ext_resource type="Texture2D" uid="uid://bpmkbjtri6l4d" path="res://assets/building_background.png" id="1_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://ucn8adbeenir" path="res://assets/tileset_v4.png" id="1_yqjtg"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dhd4r65y6lpfd" path="res://scenes/EncounterTrigger.tscn" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://dnxiarhwb24hb" path="res://scenes/enemyai.tscn" id="5_p57ef"]
 [ext_resource type="Script" uid="uid://cgr3eqeyf4tc5" path="res://scenes/health_bar.gd" id="6_p57ef"]
+[ext_resource type="Script" uid="uid://ceyujhudn3k5w" path="res://scenes/energy_bar.gd" id="7_u5sy4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lbhrr"]
 texture = ExtResource("1_lnu2h")
@@ -7846,14 +7847,17 @@ shape = SubResource("WorldBoundaryShape2D_lbhrr")
 [node name="Raven" parent="." instance=ExtResource("3_lnu2h")]
 position = Vector2(0, -8.000015)
 scale = Vector2(0.4, 0.4)
+cannon_projectile_scene = null
 
-[node name="EncounterTrigger" parent="." instance=ExtResource("4_iywne")]
+[node name="EncounterTrigger" parent="." node_paths=PackedStringArray("spawn_points") instance=ExtResource("4_iywne")]
 position = Vector2(958, -117)
 enemy_scene = ExtResource("5_p57ef")
+spawn_points = [NodePath("SpawnPoint1"), NodePath("SpawnPoint2"), null]
 
-[node name="EncounterTrigger2" parent="." instance=ExtResource("4_iywne")]
-position = Vector2(4064, -131)
+[node name="EncounterTrigger2" parent="." node_paths=PackedStringArray("spawn_points") instance=ExtResource("4_iywne")]
+position = Vector2(2406, -118)
 enemy_scene = ExtResource("5_p57ef")
+spawn_points = [NodePath("SpawnPoint1"), NodePath("SpawnPoint2"), null]
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -7871,4 +7875,20 @@ offset_left = 10.0
 offset_top = 10.0
 offset_right = 277.0
 offset_bottom = 37.0
+value = 100.0
+
+[node name="EnergyBar" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 270.0
+offset_bottom = 25.0
+script = ExtResource("7_u5sy4")
+
+[node name="ProgressBar" type="ProgressBar" parent="HUD/EnergyBar"]
+modulate = Color(0.054129526, 0.48169702, 0.7703996, 1)
+layout_mode = 0
+offset_left = 10.0
+offset_top = 40.0
+offset_right = 233.0
+offset_bottom = 67.0
 value = 100.0

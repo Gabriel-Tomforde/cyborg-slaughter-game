@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://8cd5bqya0nmw"]
+
+[ext_resource type="Script" uid="uid://dvbga8caq7ofj" path="res://scripting/Battery_Pickup.gd" id="1_hiee1"]
+[ext_resource type="Texture2D" uid="uid://bi8f130a32evj" path="res://assets/Battery, asset..png" id="1_nj2av"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hiee1"]
+radius = 31.06445
+
+[node name="BatteryPickup" type="Area2D"]
+script = ExtResource("1_hiee1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(85, -22)
+shape = SubResource("CircleShape2D_hiee1")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+position = Vector2(-0.9999963, 1)
+scale = Vector2(0.12199075, 0.12670718)
+texture = ExtResource("1_nj2av")

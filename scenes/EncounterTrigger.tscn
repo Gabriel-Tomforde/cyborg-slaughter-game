@@ -7,7 +7,7 @@ size = Vector2(982, 631.5)
 
 [node name="EncounterTrigger" type="Area2D" node_paths=PackedStringArray("spawn_points")]
 script = ExtResource("1_ysfyx")
-spawn_points = [NodePath("SpawnPoint1"), NodePath("SpawnPoint2"), NodePath("SpawnPoint3")]
+spawn_points = [NodePath("SpawnPoint1"), NodePath("SpawnPoint2"), NodePath("")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(495, 316.25)
@@ -19,8 +19,4 @@ gizmo_extents = 20.0
 
 [node name="SpawnPoint2" type="Marker2D" parent="."]
 position = Vector2(660, 324)
-gizmo_extents = 20.0
-
-[node name="SpawnPoint3" type="Marker2D" parent="."]
-position = Vector2(903, 558)
 gizmo_extents = 20.0

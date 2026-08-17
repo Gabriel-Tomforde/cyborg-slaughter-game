@@ -1,9 +1,10 @@
-[gd_scene load_steps=177 format=3 uid="uid://dnxiarhwb24hb"]
+[gd_scene load_steps=178 format=3 uid="uid://dnxiarhwb24hb"]
 
 [ext_resource type="Script" uid="uid://2t8tvkpba2qp" path="res://enemy_ai.gd" id="1_an8qu"]
 [ext_resource type="Texture2D" uid="uid://c80homy38d08f" path="res://assets/Enemie Assets/Enemy One/enemy one frames/Idle/skeleton-Enemy one-idle_00.png" id="1_mhygg"]
 [ext_resource type="Texture2D" uid="uid://cd1pfsoauojm" path="res://assets/Enemie Assets/Enemy One/enemy one frames/Die/skeleton-Enemy one-Die_00.png" id="2_8by0v"]
 [ext_resource type="Texture2D" uid="uid://dwnduddgn8ss6" path="res://assets/Enemie Assets/Enemy One/enemy one frames/Idle/skeleton-Enemy one-idle_01.png" id="2_an8qu"]
+[ext_resource type="PackedScene" uid="uid://8cd5bqya0nmw" path="res://scenes/BatteryPickup.tscn" id="2_v6gly"]
 [ext_resource type="Texture2D" uid="uid://cktb52xe5n3q0" path="res://assets/Enemie Assets/Enemy One/enemy one frames/Idle/skeleton-Enemy one-idle_02.png" id="3_1c5k7"]
 [ext_resource type="Texture2D" uid="uid://dwhjldrektrv1" path="res://assets/Enemie Assets/Enemy One/enemy one frames/Die/skeleton-Enemy one-Die_01.png" id="3_v6gly"]
 [ext_resource type="Texture2D" uid="uid://cdlpbrwrva1uu" path="res://assets/Enemie Assets/Enemy One/enemy one frames/Idle/skeleton-Enemy one-idle_03.png" id="4_b35r5"]
@@ -730,7 +731,7 @@ size = Vector2(37, 37)
 
 [node name="Enemyai" type="CharacterBody2D"]
 script = ExtResource("1_an8qu")
-max_health = 30
+battery_pickup_scene = ExtResource("2_v6gly")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-81, -69)
