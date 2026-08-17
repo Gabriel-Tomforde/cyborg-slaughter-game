@@ -1,0 +1,916 @@
+[gd_scene load_steps=213 format=3 uid="uid://bu00xbk6jus21"]
+
+[ext_resource type="Script" uid="uid://cjeacbohm8nhw" path="res://scenes/boss.gd" id="1_pqpiv"]
+[ext_resource type="Texture2D" uid="uid://cm0m37gs6ok74" path="res://assets/Enemie Assets/Enemy Two Official/Die/skeleton-Enemy Two-Die_00.png" id="1_rs175"]
+[ext_resource type="Texture2D" uid="uid://cbusoen1ofnbi" path="res://assets/Enemie Assets/Enemy Two Official/Die/skeleton-Enemy Two-Die_01.png" id="2_pqpiv"]
+[ext_resource type="Texture2D" uid="uid://btbvfx61uvwgg" path="res://assets/Enemie Assets/Enemy Two Official/Die/skeleton-Enemy Two-Die_02.png" id="3_2ciiw"]
+[ext_resource type="Texture2D" uid="uid://d0bkh4eih722" path="res://assets/Enemie Assets/Enemy Two Official/Die/skeleton-Enemy Two-Die_03.png" id="4_a3bus"]
+[ext_resource type="Texture2D" uid="uid://blf8m2jip3pvc" path="res://assets/Enemie Assets/Enemy Two Official/Die/skeleton-Enemy Two-Die_04.png" id="5_65ebt"]
+[ext_resource type="Texture2D" uid="uid://bdt2qabu1pduc" path="res://assets/Enemie Assets/Enemy Two Official/Die/skeleton-Enemy Two-Die_05.png" id="6_cv38h"]
+[ext_resource type="Texture2D" uid="uid://dvidy4vbdofkx" path="res://assets/Enemie Assets/Enemy Two Official/Die/skeleton-Enemy Two-Die_06.png" id="7_yte7l"]
+[ext_resource type="Texture2D" uid="uid://dtes6q82vjarc" path="res://assets/Enemie Assets/Enemy Two Official/Die/skeleton-Enemy Two-Die_07.png" id="8_76mvc"]
+[ext_resource type="Texture2D" uid="uid://by8w10d6ls34f" path="res://assets/Enemie Assets/Enemy Two Official/Die/skeleton-Enemy Two-Die_08.png" id="9_mwp0j"]
+[ext_resource type="Texture2D" uid="uid://cafkkr4h8gee8" path="res://assets/Enemie Assets/Enemy Two Official/Die/skeleton-Enemy Two-Die_09.png" id="10_mixdv"]
+[ext_resource type="Texture2D" uid="uid://rgsy2mks5gb1" path="res://assets/Enemie Assets/Enemy Two Official/Die/skeleton-Enemy Two-Die_10.png" id="11_f1kka"]
+[ext_resource type="Texture2D" uid="uid://c6qlt1muqravs" path="res://assets/Enemie Assets/Enemy Two Official/Die/skeleton-Enemy Two-Die_11.png" id="12_ngbl4"]
+[ext_resource type="Texture2D" uid="uid://dphmeswkc7p5d" path="res://assets/Enemie Assets/Enemy Two Official/Die/skeleton-Enemy Two-Die_12.png" id="13_m04qj"]
+[ext_resource type="Texture2D" uid="uid://cgxihmdk4jn0g" path="res://assets/Enemie Assets/Enemy Two Official/Die/skeleton-Enemy Two-Die_13.png" id="14_bp07u"]
+[ext_resource type="Texture2D" uid="uid://b78bpgrrt03ro" path="res://assets/Enemie Assets/Enemy Two Official/Die/skeleton-Enemy Two-Die_14.png" id="15_ggo6j"]
+[ext_resource type="Texture2D" uid="uid://dqt01sg32qs3" path="res://assets/Enemie Assets/Enemy Two Official/Die/skeleton-Enemy Two-Die_15.png" id="16_4qs00"]
+[ext_resource type="Texture2D" uid="uid://du7nemalruex7" path="res://assets/Enemie Assets/Enemy Two Official/Die/skeleton-Enemy Two-Die_16.png" id="17_54i1e"]
+[ext_resource type="Texture2D" uid="uid://dx1ny0r80lx0l" path="res://assets/Enemie Assets/Enemy Two Official/Die/skeleton-Enemy Two-Die_17.png" id="18_ssnfb"]
+[ext_resource type="Texture2D" uid="uid://biu0p82wjdec2" path="res://assets/Enemie Assets/Enemy Two Official/Die/skeleton-Enemy Two-Die_18.png" id="19_koesv"]
+[ext_resource type="Texture2D" uid="uid://bu4h014xe3pn" path="res://assets/Enemie Assets/Enemy Two Official/Die/skeleton-Enemy Two-Die_19.png" id="20_hcjb0"]
+[ext_resource type="Texture2D" uid="uid://bbw2c3fn4ifs1" path="res://assets/Enemie Assets/Enemy Two Official/Die/skeleton-Enemy Two-Die_20.png" id="21_pcpix"]
+[ext_resource type="Texture2D" uid="uid://c2s1o3tmceii4" path="res://assets/Enemie Assets/Enemy Two Official/Die/skeleton-Enemy Two-Die_21.png" id="22_uojye"]
+[ext_resource type="Texture2D" uid="uid://d0lt4fvc65hec" path="res://assets/Enemie Assets/Enemy Two Official/Die/skeleton-Enemy Two-Die_22.png" id="23_th3ge"]
+[ext_resource type="Texture2D" uid="uid://cjhtxuxd5ppqa" path="res://assets/Enemie Assets/Enemy Two Official/Die/skeleton-Enemy Two-Die_23.png" id="24_8pkfa"]
+[ext_resource type="Texture2D" uid="uid://bcwgrsf21iauo" path="res://assets/Enemie Assets/Enemy Two Official/Die/skeleton-Enemy Two-Die_24.png" id="25_jf4fo"]
+[ext_resource type="Texture2D" uid="uid://igke5afdfymb" path="res://assets/Enemie Assets/Enemy Two Official/Kick/skeleton-Enemy Two-Kick_00.png" id="26_sg6x3"]
+[ext_resource type="Texture2D" uid="uid://dfo80dm1ta7ma" path="res://assets/Enemie Assets/Enemy Two Official/Kick/skeleton-Enemy Two-Kick_01.png" id="27_7euvm"]
+[ext_resource type="Texture2D" uid="uid://15utcvwlqy54" path="res://assets/Enemie Assets/Enemy Two Official/Kick/skeleton-Enemy Two-Kick_02.png" id="28_j7mml"]
+[ext_resource type="Texture2D" uid="uid://c3jw3fwhqhvox" path="res://assets/Enemie Assets/Enemy Two Official/Kick/skeleton-Enemy Two-Kick_03.png" id="29_1vbs2"]
+[ext_resource type="Texture2D" uid="uid://ctxj12ugoybnb" path="res://assets/Enemie Assets/Enemy Two Official/Kick/skeleton-Enemy Two-Kick_04.png" id="30_sfr62"]
+[ext_resource type="Texture2D" uid="uid://d07mkvna48qk1" path="res://assets/Enemie Assets/Enemy Two Official/Kick/skeleton-Enemy Two-Kick_05.png" id="31_772xj"]
+[ext_resource type="Texture2D" uid="uid://be816u7dn1tg6" path="res://assets/Enemie Assets/Enemy Two Official/Kick/skeleton-Enemy Two-Kick_06.png" id="32_yq7uf"]
+[ext_resource type="Texture2D" uid="uid://wid0lr422gsv" path="res://assets/Enemie Assets/Enemy Two Official/Kick/skeleton-Enemy Two-Kick_07.png" id="33_r5moc"]
+[ext_resource type="Texture2D" uid="uid://c20vb0chiyvl7" path="res://assets/Enemie Assets/Enemy Two Official/Kick/skeleton-Enemy Two-Kick_08.png" id="34_sq0mx"]
+[ext_resource type="Texture2D" uid="uid://b4q1n8urvjmq7" path="res://assets/Enemie Assets/Enemy Two Official/Kick/skeleton-Enemy Two-Kick_09.png" id="35_nw4nl"]
+[ext_resource type="Texture2D" uid="uid://qye6csrehf5m" path="res://assets/Enemie Assets/Enemy Two Official/Kick/skeleton-Enemy Two-Kick_10.png" id="36_jqnvi"]
+[ext_resource type="Texture2D" uid="uid://cpn270ud6y7t6" path="res://assets/Enemie Assets/Enemy Two Official/Kick/skeleton-Enemy Two-Kick_11.png" id="37_68nq5"]
+[ext_resource type="Texture2D" uid="uid://c6hxq5wlotwj4" path="res://assets/Enemie Assets/Enemy Two Official/Kick/skeleton-Enemy Two-Kick_12.png" id="38_633cd"]
+[ext_resource type="Texture2D" uid="uid://b0ged5xlmo5w4" path="res://assets/Enemie Assets/Enemy Two Official/Kick/skeleton-Enemy Two-Kick_13.png" id="39_4t1dq"]
+[ext_resource type="Texture2D" uid="uid://beal33xi3exak" path="res://assets/Enemie Assets/Enemy Two Official/Kick/skeleton-Enemy Two-Kick_14.png" id="40_ecw61"]
+[ext_resource type="Texture2D" uid="uid://yfhi413340vk" path="res://assets/Enemie Assets/Enemy Two Official/Kick/skeleton-Enemy Two-Kick_15.png" id="41_radmw"]
+[ext_resource type="Texture2D" uid="uid://cgywymqdbtktc" path="res://assets/Enemie Assets/Enemy Two Official/Kick/skeleton-Enemy Two-Kick_16.png" id="42_fc1pu"]
+[ext_resource type="Texture2D" uid="uid://bo3m3pt7dgbvg" path="res://assets/Enemie Assets/Enemy Two Official/Kick/skeleton-Enemy Two-Kick_17.png" id="43_oepqq"]
+[ext_resource type="Texture2D" uid="uid://c5mpuhawv3jem" path="res://assets/Enemie Assets/Enemy Two Official/Kick/skeleton-Enemy Two-Kick_18.png" id="44_dfj24"]
+[ext_resource type="Texture2D" uid="uid://b0j4xwc8mviwp" path="res://assets/Enemie Assets/Enemy Two Official/Kick/skeleton-Enemy Two-Kick_19.png" id="45_7nt7s"]
+[ext_resource type="Texture2D" uid="uid://cj70ij2uofwx3" path="res://assets/Enemie Assets/Enemy Two Official/Kick/skeleton-Enemy Two-Kick_20.png" id="46_fr4bg"]
+[ext_resource type="Texture2D" uid="uid://cw4mbkawd0vct" path="res://assets/Enemie Assets/Enemy Two Official/Kick/skeleton-Enemy Two-Kick_21.png" id="47_cguu1"]
+[ext_resource type="Texture2D" uid="uid://duy64fg6f336x" path="res://assets/Enemie Assets/Enemy Two Official/Kick/skeleton-Enemy Two-Kick_22.png" id="48_qmm08"]
+[ext_resource type="Texture2D" uid="uid://d2h8x1vbjfx0e" path="res://assets/Enemie Assets/Enemy Two Official/Kick/skeleton-Enemy Two-Kick_23.png" id="49_y85mw"]
+[ext_resource type="Texture2D" uid="uid://dmbc0yy7afbtj" path="res://assets/Enemie Assets/Enemy Two Official/Kick/skeleton-Enemy Two-Kick_24.png" id="50_wh54w"]
+[ext_resource type="Texture2D" uid="uid://dytr7mni8xwv4" path="res://assets/Enemie Assets/Enemy Two Official/Kick/skeleton-Enemy Two-Kick_25.png" id="51_4dkn0"]
+[ext_resource type="Texture2D" uid="uid://3xakmkcsa2u1" path="res://assets/Enemie Assets/Enemy Two Official/Kick/skeleton-Enemy Two-Kick_26.png" id="52_a4bo7"]
+[ext_resource type="Texture2D" uid="uid://ccmei6ecmrklw" path="res://assets/Enemie Assets/Enemy Two Official/Kick/skeleton-Enemy Two-Kick_27.png" id="53_ckuwr"]
+[ext_resource type="Texture2D" uid="uid://d3mqat1juwf4" path="res://assets/Enemie Assets/Enemy Two Official/Kick/skeleton-Enemy Two-Kick_28.png" id="54_5bxun"]
+[ext_resource type="Texture2D" uid="uid://c5t2u5k4nlwv6" path="res://assets/Enemie Assets/Enemy Two Official/Kick/skeleton-Enemy Two-Kick_29.png" id="55_l54ol"]
+[ext_resource type="Texture2D" uid="uid://cx7gb2lr4pwkx" path="res://assets/Enemie Assets/Enemy Two Official/Punch/skeleton-Enemy Two-Single punch_00.png" id="56_3y6yy"]
+[ext_resource type="Texture2D" uid="uid://y2dlw5bklndr" path="res://assets/Enemie Assets/Enemy Two Official/Punch/skeleton-Enemy Two-Single punch_01.png" id="57_eaqbo"]
+[ext_resource type="Texture2D" uid="uid://bjpiue84xndno" path="res://assets/Enemie Assets/Enemy Two Official/Punch/skeleton-Enemy Two-Single punch_02.png" id="58_iweio"]
+[ext_resource type="Texture2D" uid="uid://wk4ln6r6i6nx" path="res://assets/Enemie Assets/Enemy Two Official/Punch/skeleton-Enemy Two-Single punch_03.png" id="59_r4yxg"]
+[ext_resource type="Texture2D" uid="uid://b70ex4lmvyukp" path="res://assets/Enemie Assets/Enemy Two Official/Punch/skeleton-Enemy Two-Single punch_04.png" id="60_yr251"]
+[ext_resource type="Texture2D" uid="uid://bvv8rtu5nau1p" path="res://assets/Enemie Assets/Enemy Two Official/Punch/skeleton-Enemy Two-Single punch_05.png" id="61_b1p3n"]
+[ext_resource type="Texture2D" uid="uid://pfseeaf3x1ec" path="res://assets/Enemie Assets/Enemy Two Official/Punch/skeleton-Enemy Two-Single punch_06.png" id="62_l52cl"]
+[ext_resource type="Texture2D" uid="uid://cwi871g7oqjq6" path="res://assets/Enemie Assets/Enemy Two Official/Punch/skeleton-Enemy Two-Single punch_07.png" id="63_66t63"]
+[ext_resource type="Texture2D" uid="uid://20j4tupsmynf" path="res://assets/Enemie Assets/Enemy Two Official/Punch/skeleton-Enemy Two-Single punch_08.png" id="64_toedw"]
+[ext_resource type="Texture2D" uid="uid://p17qv0e84rku" path="res://assets/Enemie Assets/Enemy Two Official/Punch/skeleton-Enemy Two-Single punch_09.png" id="65_updae"]
+[ext_resource type="Texture2D" uid="uid://dn6eylcqyqrw2" path="res://assets/Enemie Assets/Enemy Two Official/Punch/skeleton-Enemy Two-Single punch_10.png" id="66_eusbf"]
+[ext_resource type="Texture2D" uid="uid://cpofpkd7c5hia" path="res://assets/Enemie Assets/Enemy Two Official/Punch/skeleton-Enemy Two-Single punch_11.png" id="67_ic6n8"]
+[ext_resource type="Texture2D" uid="uid://p1l3erdnhuwj" path="res://assets/Enemie Assets/Enemy Two Official/Punch/skeleton-Enemy Two-Single punch_12.png" id="68_vaci7"]
+[ext_resource type="Texture2D" uid="uid://b0fqk82kd7ly4" path="res://assets/Enemie Assets/Enemy Two Official/Punch/skeleton-Enemy Two-Single punch_13.png" id="69_idwc4"]
+[ext_resource type="Texture2D" uid="uid://bsd6simawt6bl" path="res://assets/Enemie Assets/Enemy Two Official/Punch/skeleton-Enemy Two-Single punch_14.png" id="70_yexl4"]
+[ext_resource type="Texture2D" uid="uid://bl8ycxm40wx1f" path="res://assets/Enemie Assets/Enemy Two Official/Punch/skeleton-Enemy Two-Single punch_15.png" id="71_xn4st"]
+[ext_resource type="Texture2D" uid="uid://ctni1wtbpns3x" path="res://assets/Enemie Assets/Enemy Two Official/Punch/skeleton-Enemy Two-Single punch_16.png" id="72_ha3uv"]
+[ext_resource type="Texture2D" uid="uid://blxvvx86dn321" path="res://assets/Enemie Assets/Enemy Two Official/Punch/skeleton-Enemy Two-Single punch_17.png" id="73_ysqqu"]
+[ext_resource type="Texture2D" uid="uid://c4gjdwbestvjf" path="res://assets/Enemie Assets/Enemy Two Official/Punch/skeleton-Enemy Two-Single punch_18.png" id="74_khjmj"]
+[ext_resource type="Texture2D" uid="uid://8este84c31wf" path="res://assets/Enemie Assets/Enemy Two Official/Punch/skeleton-Enemy Two-Single punch_19.png" id="75_3d6j2"]
+[ext_resource type="Texture2D" uid="uid://cqltn80ojck25" path="res://assets/Enemie Assets/Enemy Two Official/Punch/skeleton-Enemy Two-Single punch_20.png" id="76_0tpux"]
+[ext_resource type="Texture2D" uid="uid://bikrxm05m717n" path="res://assets/Enemie Assets/Enemy Two Official/Two Handed Swing/skeleton-Enemy Two-two handed swing_00.png" id="77_mko0g"]
+[ext_resource type="Texture2D" uid="uid://wr2qtoaperx3" path="res://assets/Enemie Assets/Enemy Two Official/Two Handed Swing/skeleton-Enemy Two-two handed swing_01.png" id="78_tajih"]
+[ext_resource type="Texture2D" uid="uid://h2ur54d5e0ie" path="res://assets/Enemie Assets/Enemy Two Official/Two Handed Swing/skeleton-Enemy Two-two handed swing_02.png" id="79_audey"]
+[ext_resource type="Texture2D" uid="uid://dqke0kwa7dw6b" path="res://assets/Enemie Assets/Enemy Two Official/Two Handed Swing/skeleton-Enemy Two-two handed swing_03.png" id="80_who88"]
+[ext_resource type="Texture2D" uid="uid://cndf8atq3x4lr" path="res://assets/Enemie Assets/Enemy Two Official/Two Handed Swing/skeleton-Enemy Two-two handed swing_04.png" id="81_bgn2g"]
+[ext_resource type="Texture2D" uid="uid://ueiarakm3rdv" path="res://assets/Enemie Assets/Enemy Two Official/Two Handed Swing/skeleton-Enemy Two-two handed swing_05.png" id="82_rup52"]
+[ext_resource type="Texture2D" uid="uid://b4kro5csmene2" path="res://assets/Enemie Assets/Enemy Two Official/Two Handed Swing/skeleton-Enemy Two-two handed swing_06.png" id="83_sylqd"]
+[ext_resource type="Texture2D" uid="uid://bkufbnf4yf1e7" path="res://assets/Enemie Assets/Enemy Two Official/Two Handed Swing/skeleton-Enemy Two-two handed swing_07.png" id="84_qasmo"]
+[ext_resource type="Texture2D" uid="uid://y7dgxw42t1f2" path="res://assets/Enemie Assets/Enemy Two Official/Two Handed Swing/skeleton-Enemy Two-two handed swing_08.png" id="85_8005j"]
+[ext_resource type="Texture2D" uid="uid://dcooflv8qwcaq" path="res://assets/Enemie Assets/Enemy Two Official/Two Handed Swing/skeleton-Enemy Two-two handed swing_09.png" id="86_2rrpi"]
+[ext_resource type="Texture2D" uid="uid://da1wru68cq0jp" path="res://assets/Enemie Assets/Enemy Two Official/Two Handed Swing/skeleton-Enemy Two-two handed swing_10.png" id="87_dod2u"]
+[ext_resource type="Texture2D" uid="uid://8vuv0cg1olkb" path="res://assets/Enemie Assets/Enemy Two Official/Two Handed Swing/skeleton-Enemy Two-two handed swing_11.png" id="88_46r5o"]
+[ext_resource type="Texture2D" uid="uid://cghfhnv6xmyqs" path="res://assets/Enemie Assets/Enemy Two Official/Two Handed Swing/skeleton-Enemy Two-two handed swing_12.png" id="89_ar7qx"]
+[ext_resource type="Texture2D" uid="uid://dda2gjdmw8brh" path="res://assets/Enemie Assets/Enemy Two Official/Two Handed Swing/skeleton-Enemy Two-two handed swing_13.png" id="90_2ca4a"]
+[ext_resource type="Texture2D" uid="uid://bjuomas8swj3y" path="res://assets/Enemie Assets/Enemy Two Official/Two Handed Swing/skeleton-Enemy Two-two handed swing_14.png" id="91_2h43x"]
+[ext_resource type="Texture2D" uid="uid://tm0bq4p0bdeg" path="res://assets/Enemie Assets/Enemy Two Official/Two Handed Swing/skeleton-Enemy Two-two handed swing_15.png" id="92_hbq52"]
+[ext_resource type="Texture2D" uid="uid://cao65wyb33207" path="res://assets/Enemie Assets/Enemy Two Official/Two Handed Swing/skeleton-Enemy Two-two handed swing_16.png" id="93_bc323"]
+[ext_resource type="Texture2D" uid="uid://du5hmrs7bmifk" path="res://assets/Enemie Assets/Enemy Two Official/Two Handed Swing/skeleton-Enemy Two-two handed swing_17.png" id="94_80cle"]
+[ext_resource type="Texture2D" uid="uid://c8ebvau64bv8s" path="res://assets/Enemie Assets/Enemy Two Official/Two Handed Swing/skeleton-Enemy Two-two handed swing_18.png" id="95_s4md4"]
+[ext_resource type="Texture2D" uid="uid://cbwrnv2skdhjs" path="res://assets/Enemie Assets/Enemy Two Official/Two Handed Swing/skeleton-Enemy Two-two handed swing_19.png" id="96_n1uhm"]
+[ext_resource type="Texture2D" uid="uid://cvr6s64tmyejm" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_00.png" id="97_q3i6x"]
+[ext_resource type="Texture2D" uid="uid://chjx6j5dlmb6f" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_01.png" id="98_4cgwv"]
+[ext_resource type="Texture2D" uid="uid://did185vxwrewd" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_02.png" id="99_6de4w"]
+[ext_resource type="Texture2D" uid="uid://c7q2iefe06c2a" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_03.png" id="100_sjq6j"]
+[ext_resource type="Texture2D" uid="uid://i33pcqrwaql7" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_04.png" id="101_3frnq"]
+[ext_resource type="Texture2D" uid="uid://imakfi4kt3qq" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_05.png" id="102_juefo"]
+[ext_resource type="Texture2D" uid="uid://5k75twwer36o" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_06.png" id="103_846ok"]
+[ext_resource type="Texture2D" uid="uid://c33pxyrsg8lvj" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_07.png" id="104_obic1"]
+[ext_resource type="Texture2D" uid="uid://b2cvxsa6kkycj" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_08.png" id="105_il7i3"]
+[ext_resource type="Texture2D" uid="uid://dlidgqkwaqp53" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_09.png" id="106_87fpj"]
+[ext_resource type="Texture2D" uid="uid://di08yg5hqk3vm" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_10.png" id="107_gipii"]
+[ext_resource type="Texture2D" uid="uid://bvtl75wuhybgh" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_11.png" id="108_mnatp"]
+[ext_resource type="Texture2D" uid="uid://bc4elvgh7uji4" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_12.png" id="109_yxnxm"]
+[ext_resource type="Texture2D" uid="uid://dujpeyioyh08v" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_13.png" id="110_uw8fb"]
+[ext_resource type="Texture2D" uid="uid://bq6y0c8tbhiso" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_14.png" id="111_had81"]
+[ext_resource type="Texture2D" uid="uid://bya78ilu4pnh6" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_15.png" id="112_qerdk"]
+[ext_resource type="Texture2D" uid="uid://dx85hcuv74urv" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_16.png" id="113_vp3fb"]
+[ext_resource type="Texture2D" uid="uid://b2uwd7u8sfbt3" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_17.png" id="114_r4nvy"]
+[ext_resource type="Texture2D" uid="uid://bj55oe3g1okcg" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_18.png" id="115_vhlfp"]
+[ext_resource type="Texture2D" uid="uid://cr2tsiqhekq43" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_19.png" id="116_4bq1c"]
+[ext_resource type="Texture2D" uid="uid://dkbb2butk7tm1" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_20.png" id="117_q4i2y"]
+[ext_resource type="Texture2D" uid="uid://c2twcecsu2ee6" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_21.png" id="118_cvt64"]
+[ext_resource type="Texture2D" uid="uid://cyj0vorniqu1d" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_22.png" id="119_ust4q"]
+[ext_resource type="Texture2D" uid="uid://k0ko7wip2tfp" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_23.png" id="120_4w33g"]
+[ext_resource type="Texture2D" uid="uid://4n5wmgj3cqcl" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_24.png" id="121_3t0p0"]
+[ext_resource type="Texture2D" uid="uid://r6ehdbwpgxgf" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_25.png" id="122_udlms"]
+[ext_resource type="Texture2D" uid="uid://bn4hpt1wwylfu" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_26.png" id="123_rmif2"]
+[ext_resource type="Texture2D" uid="uid://0oqfwr8e6vu2" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_27.png" id="124_6kb0v"]
+[ext_resource type="Texture2D" uid="uid://th6u8ernua6o" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_28.png" id="125_twyb7"]
+[ext_resource type="Texture2D" uid="uid://264ccue7akjf" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_29.png" id="126_bjr8v"]
+[ext_resource type="Texture2D" uid="uid://rrdile3wro75" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_30.png" id="127_od8kr"]
+[ext_resource type="Texture2D" uid="uid://sxt3gjedpy6" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_31.png" id="128_2shjp"]
+[ext_resource type="Texture2D" uid="uid://4c8bfh1e0ht6" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_32.png" id="129_6t0rr"]
+[ext_resource type="Texture2D" uid="uid://bu1a461j1dgl6" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_33.png" id="130_h43vr"]
+[ext_resource type="Texture2D" uid="uid://vac3dk5iel6i" path="res://assets/Enemie Assets/Enemy Two Official/Arm Cannon/skeleton-Enemy Two-arm cannon_34.png" id="131_lsa1u"]
+[ext_resource type="Texture2D" uid="uid://bnlknb3s5e4mo" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_00.png" id="132_vo7j7"]
+[ext_resource type="Texture2D" uid="uid://b3pmxxa6tahfj" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_01.png" id="133_lqcxg"]
+[ext_resource type="Texture2D" uid="uid://cd5gv51ws2amw" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_02.png" id="134_rv3cj"]
+[ext_resource type="Texture2D" uid="uid://calq52fjc0udd" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_03.png" id="135_fhyuc"]
+[ext_resource type="Texture2D" uid="uid://b3p4otvgmb588" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_04.png" id="136_4l8q3"]
+[ext_resource type="Texture2D" uid="uid://bkpi60ehmty03" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_05.png" id="137_emxof"]
+[ext_resource type="Texture2D" uid="uid://cldqqggx88j41" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_06.png" id="138_n8g4b"]
+[ext_resource type="Texture2D" uid="uid://b5ffgfunakmwa" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_07.png" id="139_83uv2"]
+[ext_resource type="Texture2D" uid="uid://coe416iu85se8" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_08.png" id="140_i0xx1"]
+[ext_resource type="Texture2D" uid="uid://dnten0dfuqo5r" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_09.png" id="141_3p6d1"]
+[ext_resource type="Texture2D" uid="uid://deweax8w0al6y" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_10.png" id="142_5bh32"]
+[ext_resource type="Texture2D" uid="uid://cksxnsi03pqoi" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_11.png" id="143_ht64r"]
+[ext_resource type="Texture2D" uid="uid://b4r0xpto8o2d6" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_12.png" id="144_al335"]
+[ext_resource type="Texture2D" uid="uid://blghf46wandwv" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_13.png" id="145_tsoux"]
+[ext_resource type="Texture2D" uid="uid://b8mg7m8n25hug" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_14.png" id="146_axsy4"]
+[ext_resource type="Texture2D" uid="uid://v26wwcj4jlqd" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_15.png" id="147_rppm6"]
+[ext_resource type="Texture2D" uid="uid://coupgo2cw2wfw" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_16.png" id="148_2wbhj"]
+[ext_resource type="Texture2D" uid="uid://dj04542xhfms" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_17.png" id="149_toutj"]
+[ext_resource type="Texture2D" uid="uid://c2dmnqxu22k5d" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_18.png" id="150_1u7gf"]
+[ext_resource type="Texture2D" uid="uid://kcbgdnpau52j" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_19.png" id="151_ft11o"]
+[ext_resource type="Texture2D" uid="uid://gehm0w3dk31v" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_20.png" id="152_kuem8"]
+[ext_resource type="Texture2D" uid="uid://16i71wur0xak" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_21.png" id="153_gukjf"]
+[ext_resource type="Texture2D" uid="uid://dqit4i8yj1lcp" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_22.png" id="154_b13uf"]
+[ext_resource type="Texture2D" uid="uid://dghuc0l73bvfw" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_23.png" id="155_h713h"]
+[ext_resource type="Texture2D" uid="uid://vxrfno1kinya" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_24.png" id="156_ctogb"]
+[ext_resource type="Texture2D" uid="uid://dr74tsav6exft" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_25.png" id="157_4nh55"]
+[ext_resource type="Texture2D" uid="uid://ytj36kmf848l" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_26.png" id="158_rr6sj"]
+[ext_resource type="Texture2D" uid="uid://2c37ngm2yyk8" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_27.png" id="159_n8kf2"]
+[ext_resource type="Texture2D" uid="uid://csfcorgtgdkto" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_28.png" id="160_qepa0"]
+[ext_resource type="Texture2D" uid="uid://d0nww0dty8qdw" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_29.png" id="161_xt8we"]
+[ext_resource type="Texture2D" uid="uid://cn6paxpyjh240" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_30.png" id="162_svdxg"]
+[ext_resource type="Texture2D" uid="uid://dh7xr0hqigj1m" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_31.png" id="163_fxoco"]
+[ext_resource type="Texture2D" uid="uid://cegi2lo2neb5i" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_32.png" id="164_u6kwl"]
+[ext_resource type="Texture2D" uid="uid://be4ocao7kxqre" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_33.png" id="165_lrch8"]
+[ext_resource type="Texture2D" uid="uid://voqtei225upx" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_34.png" id="166_h1x2d"]
+[ext_resource type="Texture2D" uid="uid://dkrbega36j25j" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_35.png" id="167_suqms"]
+[ext_resource type="Texture2D" uid="uid://c7etfbokaxeub" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_36.png" id="168_gqy86"]
+[ext_resource type="Texture2D" uid="uid://b86nvpwi1ggtd" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_37.png" id="169_d4vsr"]
+[ext_resource type="Texture2D" uid="uid://ci2nm26md615d" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_38.png" id="170_nncu5"]
+[ext_resource type="Texture2D" uid="uid://do7svf516qrv1" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_39.png" id="171_old6t"]
+[ext_resource type="Texture2D" uid="uid://rb3x3iox4a37" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_40.png" id="172_beq0n"]
+[ext_resource type="Texture2D" uid="uid://dova7b2ihs8pt" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_41.png" id="173_g1cd6"]
+[ext_resource type="Texture2D" uid="uid://bri0l18u0i00d" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_42.png" id="174_3wija"]
+[ext_resource type="Texture2D" uid="uid://cj5030qwtgleu" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_43.png" id="175_xxxho"]
+[ext_resource type="Texture2D" uid="uid://emjxhr2pkcig" path="res://assets/Enemie Assets/Enemy Two Official/Idle/skeleton-Enemy Two-idle_44.png" id="176_kyg6q"]
+[ext_resource type="Texture2D" uid="uid://bb0bsq6g751fe" path="res://assets/Enemie Assets/Enemy Two Official/Run/skeleton-Enemy Two-Run_00.png" id="177_28yx8"]
+[ext_resource type="Texture2D" uid="uid://dc15u1kaldpyp" path="res://assets/Enemie Assets/Enemy Two Official/Run/skeleton-Enemy Two-Run_01.png" id="178_x5por"]
+[ext_resource type="Texture2D" uid="uid://dwb7yaepo5ynf" path="res://assets/Enemie Assets/Enemy Two Official/Run/skeleton-Enemy Two-Run_02.png" id="179_kauoe"]
+[ext_resource type="Texture2D" uid="uid://d2whebdhglh4h" path="res://assets/Enemie Assets/Enemy Two Official/Run/skeleton-Enemy Two-Run_03.png" id="180_yt8tr"]
+[ext_resource type="Texture2D" uid="uid://8tdhs1k2a5u5" path="res://assets/Enemie Assets/Enemy Two Official/Run/skeleton-Enemy Two-Run_04.png" id="181_1byxk"]
+[ext_resource type="Texture2D" uid="uid://c4neu2ome7kp4" path="res://assets/Enemie Assets/Enemy Two Official/Run/skeleton-Enemy Two-Run_05.png" id="182_54nnd"]
+[ext_resource type="Texture2D" uid="uid://b3ki4iuea6ldi" path="res://assets/Enemie Assets/Enemy Two Official/Run/skeleton-Enemy Two-Run_06.png" id="183_q5vbc"]
+[ext_resource type="Texture2D" uid="uid://buh55jobpy6mi" path="res://assets/Enemie Assets/Enemy Two Official/Run/skeleton-Enemy Two-Run_07.png" id="184_yc6t3"]
+[ext_resource type="Texture2D" uid="uid://s1wb5ry25ipq" path="res://assets/Enemie Assets/Enemy Two Official/Run/skeleton-Enemy Two-Run_08.png" id="185_132js"]
+[ext_resource type="Texture2D" uid="uid://ccug2r8dv6d1u" path="res://assets/Enemie Assets/Enemy Two Official/Run/skeleton-Enemy Two-Run_09.png" id="186_l3xsd"]
+[ext_resource type="Texture2D" uid="uid://bpk38qick6g03" path="res://assets/Enemie Assets/Enemy Two Official/Run/skeleton-Enemy Two-Run_10.png" id="187_ld88n"]
+[ext_resource type="Texture2D" uid="uid://c3hqqkybg0e4v" path="res://assets/Enemie Assets/Enemy Two Official/Run/skeleton-Enemy Two-Run_11.png" id="188_52kf2"]
+[ext_resource type="Texture2D" uid="uid://dcdswqqulkfns" path="res://assets/Enemie Assets/Enemy Two Official/Run/skeleton-Enemy Two-Run_12.png" id="189_ohw2d"]
+[ext_resource type="Texture2D" uid="uid://g6winnipm3b5" path="res://assets/Enemie Assets/Enemy Two Official/Run/skeleton-Enemy Two-Run_13.png" id="190_88viv"]
+[ext_resource type="Texture2D" uid="uid://b7eq4j64r3akg" path="res://assets/Enemie Assets/Enemy Two Official/Run/skeleton-Enemy Two-Run_14.png" id="191_es1kc"]
+[ext_resource type="Texture2D" uid="uid://c2slj0jkl6uqo" path="res://assets/Enemie Assets/Enemy Two Official/Run/skeleton-Enemy Two-Run_15.png" id="192_o61ua"]
+[ext_resource type="Texture2D" uid="uid://b6pgg1aquagqa" path="res://assets/Enemie Assets/Enemy Two Official/Run/skeleton-Enemy Two-Run_16.png" id="193_jaym5"]
+[ext_resource type="Texture2D" uid="uid://dwp0g1jw4kr53" path="res://assets/Enemie Assets/Enemy Two Official/Run/skeleton-Enemy Two-Run_17.png" id="194_1pmgw"]
+[ext_resource type="Texture2D" uid="uid://d2pufdat2ltw0" path="res://assets/Enemie Assets/Enemy Two Official/Run/skeleton-Enemy Two-Run_18.png" id="195_4wttv"]
+[ext_resource type="Texture2D" uid="uid://deflnjidayvn6" path="res://assets/Enemie Assets/Enemy Two Official/Run/skeleton-Enemy Two-Run_19.png" id="196_nd7fb"]
+[ext_resource type="Texture2D" uid="uid://dcy7iacmsvlpd" path="res://assets/Enemie Assets/Enemy Two Official/Run/skeleton-Enemy Two-Run_20.png" id="197_a3ikf"]
+[ext_resource type="Texture2D" uid="uid://1j8f57yfg5km" path="res://assets/Enemie Assets/Enemy Two Official/Run/skeleton-Enemy Two-Run_21.png" id="198_ay7ej"]
+[ext_resource type="Texture2D" uid="uid://wbwoq0fv2oob" path="res://assets/Enemie Assets/Enemy Two Official/Run/skeleton-Enemy Two-Run_22.png" id="199_iikyw"]
+[ext_resource type="Texture2D" uid="uid://dhfojrmybwvbm" path="res://assets/Enemie Assets/Enemy Two Official/Run/skeleton-Enemy Two-Run_23.png" id="200_ydicc"]
+[ext_resource type="Texture2D" uid="uid://d1uh1ax31fsao" path="res://assets/Enemie Assets/Enemy Two Official/Run/skeleton-Enemy Two-Run_24.png" id="201_1ea3k"]
+[ext_resource type="Texture2D" uid="uid://cq4kblwe6str6" path="res://assets/Enemie Assets/Enemy Two Official/Run/skeleton-Enemy Two-Run_25.png" id="202_7sb83"]
+[ext_resource type="Texture2D" uid="uid://cdfkcja6t2ca3" path="res://assets/Enemie Assets/Enemy Two Official/Run/skeleton-Enemy Two-Run_26.png" id="203_v6bbn"]
+[ext_resource type="Texture2D" uid="uid://btdjufq7qqab1" path="res://assets/Enemie Assets/Enemy Two Official/Run/skeleton-Enemy Two-Run_27.png" id="204_xpy56"]
+[ext_resource type="Texture2D" uid="uid://dwxm6s3nlbmwp" path="res://assets/Enemie Assets/Enemy Two Official/Run/skeleton-Enemy Two-Run_28.png" id="205_xe5i8"]
+[ext_resource type="Texture2D" uid="uid://slpg8ih660sf" path="res://assets/Enemie Assets/Enemy Two Official/Run/skeleton-Enemy Two-Run_29.png" id="206_joaix"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7ie47"]
+radius = 44.0
+height = 262.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g1yvr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_rs175")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_pqpiv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2ciiw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_a3bus")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_65ebt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_cv38h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_yte7l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_76mvc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_mwp0j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_mixdv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_f1kka")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ngbl4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_m04qj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_bp07u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_ggo6j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_4qs00")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_54i1e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_ssnfb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_koesv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_hcjb0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_pcpix")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_uojye")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_th3ge")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_8pkfa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_jf4fo")
+}],
+"loop": false,
+"name": &"Die",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("26_sg6x3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_7euvm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_j7mml")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_1vbs2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_sfr62")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_772xj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_yq7uf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_r5moc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_sq0mx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_nw4nl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_jqnvi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_68nq5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_633cd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_4t1dq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_ecw61")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_radmw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_fc1pu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_oepqq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_dfj24")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_7nt7s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_fr4bg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_cguu1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_qmm08")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_y85mw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_wh54w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_4dkn0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_a4bo7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_ckuwr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_5bxun")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_l54ol")
+}],
+"loop": false,
+"name": &"Kick",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("56_3y6yy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_eaqbo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_iweio")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_r4yxg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_yr251")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_b1p3n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_l52cl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_66t63")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_toedw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_updae")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_eusbf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_ic6n8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("68_vaci7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("69_idwc4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("70_yexl4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("71_xn4st")
+}, {
+"duration": 1.0,
+"texture": ExtResource("72_ha3uv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("73_ysqqu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("74_khjmj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("75_3d6j2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("76_0tpux")
+}],
+"loop": false,
+"name": &"Punch",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("77_mko0g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("78_tajih")
+}, {
+"duration": 1.0,
+"texture": ExtResource("79_audey")
+}, {
+"duration": 1.0,
+"texture": ExtResource("80_who88")
+}, {
+"duration": 1.0,
+"texture": ExtResource("81_bgn2g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("82_rup52")
+}, {
+"duration": 1.0,
+"texture": ExtResource("83_sylqd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("84_qasmo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("85_8005j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("86_2rrpi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("87_dod2u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("88_46r5o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("89_ar7qx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("90_2ca4a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("91_2h43x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("92_hbq52")
+}, {
+"duration": 1.0,
+"texture": ExtResource("93_bc323")
+}, {
+"duration": 1.0,
+"texture": ExtResource("94_80cle")
+}, {
+"duration": 1.0,
+"texture": ExtResource("95_s4md4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("96_n1uhm")
+}],
+"loop": false,
+"name": &"Two handed swing",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("97_q3i6x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("98_4cgwv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("99_6de4w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("100_sjq6j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("101_3frnq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("102_juefo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("103_846ok")
+}, {
+"duration": 1.0,
+"texture": ExtResource("104_obic1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("105_il7i3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("106_87fpj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("107_gipii")
+}, {
+"duration": 1.0,
+"texture": ExtResource("108_mnatp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("109_yxnxm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("110_uw8fb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("111_had81")
+}, {
+"duration": 1.0,
+"texture": ExtResource("112_qerdk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("113_vp3fb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("114_r4nvy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("115_vhlfp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("116_4bq1c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("117_q4i2y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("118_cvt64")
+}, {
+"duration": 1.0,
+"texture": ExtResource("119_ust4q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("120_4w33g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("121_3t0p0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("122_udlms")
+}, {
+"duration": 1.0,
+"texture": ExtResource("123_rmif2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("124_6kb0v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("125_twyb7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("126_bjr8v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("127_od8kr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("128_2shjp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("129_6t0rr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("130_h43vr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("131_lsa1u")
+}],
+"loop": false,
+"name": &"arm cannon",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("132_vo7j7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("133_lqcxg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("134_rv3cj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("135_fhyuc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("136_4l8q3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("137_emxof")
+}, {
+"duration": 1.0,
+"texture": ExtResource("138_n8g4b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("139_83uv2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("140_i0xx1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("141_3p6d1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("142_5bh32")
+}, {
+"duration": 1.0,
+"texture": ExtResource("143_ht64r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("144_al335")
+}, {
+"duration": 1.0,
+"texture": ExtResource("145_tsoux")
+}, {
+"duration": 1.0,
+"texture": ExtResource("146_axsy4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("147_rppm6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("148_2wbhj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("149_toutj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("150_1u7gf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("151_ft11o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("152_kuem8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("153_gukjf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("154_b13uf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("155_h713h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("156_ctogb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("157_4nh55")
+}, {
+"duration": 1.0,
+"texture": ExtResource("158_rr6sj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("159_n8kf2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("160_qepa0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("161_xt8we")
+}, {
+"duration": 1.0,
+"texture": ExtResource("162_svdxg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("163_fxoco")
+}, {
+"duration": 1.0,
+"texture": ExtResource("164_u6kwl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("165_lrch8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("166_h1x2d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("167_suqms")
+}, {
+"duration": 1.0,
+"texture": ExtResource("168_gqy86")
+}, {
+"duration": 1.0,
+"texture": ExtResource("169_d4vsr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("170_nncu5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("171_old6t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("172_beq0n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("173_g1cd6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("174_3wija")
+}, {
+"duration": 1.0,
+"texture": ExtResource("175_xxxho")
+}, {
+"duration": 1.0,
+"texture": ExtResource("176_kyg6q")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("177_28yx8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("178_x5por")
+}, {
+"duration": 1.0,
+"texture": ExtResource("179_kauoe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("180_yt8tr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("181_1byxk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("182_54nnd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("183_q5vbc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("184_yc6t3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("185_132js")
+}, {
+"duration": 1.0,
+"texture": ExtResource("186_l3xsd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("187_ld88n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("188_52kf2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("189_ohw2d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("190_88viv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("191_es1kc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("192_o61ua")
+}, {
+"duration": 1.0,
+"texture": ExtResource("193_jaym5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("194_1pmgw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("195_4wttv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("196_nd7fb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("197_a3ikf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("198_ay7ej")
+}, {
+"duration": 1.0,
+"texture": ExtResource("199_iikyw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("200_ydicc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("201_1ea3k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("202_7sb83")
+}, {
+"duration": 1.0,
+"texture": ExtResource("203_v6bbn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("204_xpy56")
+}, {
+"duration": 1.0,
+"texture": ExtResource("205_xe5i8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("206_joaix")
+}],
+"loop": true,
+"name": &"run",
+"speed": 24.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2ciiw"]
+radius = 189.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pqpiv"]
+size = Vector2(80, 259)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ciiw"]
+
+[node name="Boss" type="CharacterBody2D"]
+position = Vector2(55, 1)
+script = ExtResource("1_pqpiv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(58, -112)
+shape = SubResource("CapsuleShape2D_7ie47")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(96, -133)
+scale = Vector2(0.5807915, 0.6100629)
+sprite_frames = SubResource("SpriteFrames_g1yvr")
+animation = &"arm cannon"
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(57, -146)
+shape = SubResource("CircleShape2D_2ciiw")
+
+[node name="HurtboxArea2D" type="Area2D" parent="."]
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxArea2D"]
+position = Vector2(57, -115)
+shape = SubResource("RectangleShape2D_pqpiv")
+
+[node name="HitboxArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxArea2D"]
+position = Vector2(-23, -162)
+shape = SubResource("RectangleShape2D_2ciiw")
+
+[node name="AttackCooldownTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
+[connection signal="area_entered" from="HitboxArea2D" to="." method="_on_hitbox_area_2d_area_entered"]

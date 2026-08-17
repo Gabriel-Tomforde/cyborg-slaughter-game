@@ -1,12 +1,15 @@
-[gd_scene load_steps=12 format=4 uid="uid://ilx0fw0b7501"]
+[gd_scene load_steps=15 format=4 uid="uid://ilx0fw0b7501"]
 
 [ext_resource type="Texture2D" uid="uid://bpmkbjtri6l4d" path="res://assets/building_background.png" id="1_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://ucn8adbeenir" path="res://assets/tileset_v4.png" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://gg31xw3nbu3x" path="res://Raven/raven.tscn" id="3_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://dhd4r65y6lpfd" path="res://scenes/EncounterTrigger.tscn" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://dnxiarhwb24hb" path="res://scenes/enemyai.tscn" id="5_p57ef"]
-[ext_resource type="Script" uid="uid://cgr3eqeyf4tc5" path="res://scenes/health_bar.gd" id="6_p57ef"]
-[ext_resource type="Script" uid="uid://ceyujhudn3k5w" path="res://scenes/energy_bar.gd" id="7_u5sy4"]
+[ext_resource type="Script" uid="uid://cgr3eqeyf4tc5" path="res://scripting/health_bar.gd" id="6_p57ef"]
+[ext_resource type="Script" uid="uid://ceyujhudn3k5w" path="res://scripting/energy_bar.gd" id="7_u5sy4"]
+[ext_resource type="Script" uid="uid://t4m82d0mnmun" path="res://scripting/pause_menu.gd" id="8_gee14"]
+[ext_resource type="Script" uid="uid://d3fptr8ysupjt" path="res://scripting/game_over_menu.gd" id="9_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://bu00xbk6jus21" path="res://scenes/boss.tscn" id="10_vtaks"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lbhrr"]
 texture = ExtResource("1_lnu2h")
@@ -7847,7 +7850,6 @@ shape = SubResource("WorldBoundaryShape2D_lbhrr")
 [node name="Raven" parent="." instance=ExtResource("3_lnu2h")]
 position = Vector2(0, -8.000015)
 scale = Vector2(0.4, 0.4)
-cannon_projectile_scene = null
 
 [node name="EncounterTrigger" parent="." node_paths=PackedStringArray("spawn_points") instance=ExtResource("4_iywne")]
 position = Vector2(958, -117)
@@ -7892,3 +7894,104 @@ offset_top = 40.0
 offset_right = 233.0
 offset_bottom = 67.0
 value = 100.0
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+script = ExtResource("8_gee14")
+
+[node name="PausePanel" type="Control" parent="PauseMenu"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DimBackground" type="ColorRect" parent="PauseMenu/PausePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7058824)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/PausePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.5
+offset_top = -78.5
+offset_right = 62.5
+offset_bottom = 78.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="PauseMenu/PausePanel/VBoxContainer"]
+layout_mode = 2
+text = "Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="PauseMenu/PausePanel/VBoxContainer"]
+layout_mode = 2
+text = "RESUME"
+
+[node name="RestartButton" type="Button" parent="PauseMenu/PausePanel/VBoxContainer"]
+layout_mode = 2
+text = "RESTART"
+
+[node name="QuitButton" type="Button" parent="PauseMenu/PausePanel/VBoxContainer"]
+layout_mode = 2
+text = "QUIT TO TITLE"
+
+[node name="GameOver" type="CanvasLayer" parent="."]
+script = ExtResource("9_0tnpc")
+
+[node name="GameOverPanel" type="Control" parent="GameOver"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DimBackground" type="ColorRect" parent="GameOver/GameOverPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOver/GameOverPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -54.0
+offset_top = -74.0
+offset_right = 54.0
+offset_bottom = 76.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="GameOver/GameOverPanel/VBoxContainer"]
+layout_mode = 2
+text = "GAME OVER"
+
+[node name="RestartButton" type="Button" parent="GameOver/GameOverPanel/VBoxContainer"]
+layout_mode = 2
+text = "RESTART"
+
+[node name="QuitButton" type="Button" parent="GameOver/GameOverPanel/VBoxContainer"]
+layout_mode = 2
+text = "QUIT TO MENU"
+
+[node name="Boss" parent="." instance=ExtResource("10_vtaks")]
+position = Vector2(4421, 122)
