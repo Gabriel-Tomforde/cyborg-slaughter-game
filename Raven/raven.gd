@@ -35,9 +35,19 @@ const JUMP_VELOCITY = -300.0
 @onready var sprite_right: AnimatedSprite2D = $SpriteRight/RightAnimations
 @onready var sprite_left_root: Node2D = $SpriteLeft
 @onready var sprite_right_root: Node2D = $SpriteRight
+@onready var swing_sfx_player: AudioStreamPlayer2D = $SwingSFXPlayer
+@onready var hit_sfx_player: AudioStreamPlayer2D = $HitSFXPlayer
 
 @export var combo_window: float = 0.6  # seconds allowed to chain into the next hit
 @export var max_health: int = 100
+
+# --- Attack sound effects ---
+# Each array holds one sound per combo hit (punch, kick, swing - same order
+# as ATTACK_ANIMS below). Leave a slot empty to skip it.
+# swing_sfx plays every time an attack starts, whether it lands or not.
+# hit_sfx plays only when that attack actually connects with something.
+@export var swing_sfx: Array[AudioStream] = []
+@export var hit_sfx: Array[AudioStream] = []
 
 # --- Battery / cannon attack ---
 @export var max_battery_charge: int = 5
@@ -157,7 +167,20 @@ func _start_attack(step: int) -> void:
 	var anim_name: String = ATTACK_ANIMS[step - 1]
 	_get_active_sprite().play(anim_name)
 	_update_hitbox_for_attack(step)
+	_play_swing_sfx(step)
 	enable_hitbox()
+
+
+func _play_swing_sfx(step: int) -> void:
+	if step - 1 < swing_sfx.size() and swing_sfx[step - 1] != null:
+		swing_sfx_player.stream = swing_sfx[step - 1]
+		swing_sfx_player.play()
+
+
+func _play_hit_sfx(step: int) -> void:
+	if step - 1 < hit_sfx.size() and hit_sfx[step - 1] != null:
+		hit_sfx_player.stream = hit_sfx[step - 1]
+		hit_sfx_player.play()
 
 
 func _try_cannon_attack() -> void:
@@ -246,6 +269,7 @@ func _on_hitbox_area_2d_area_entered(area: Area2D) -> void:
 	var target := area.get_parent()
 	if target.has_method("take_damage"):
 		target.take_damage(UNARMED_DAMAGE[combo_step - 1])
+		_play_hit_sfx(combo_step)
 
 
 func take_damage(amount: int) -> void:

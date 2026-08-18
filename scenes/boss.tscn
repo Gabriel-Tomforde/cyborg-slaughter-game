@@ -209,8 +209,8 @@
 [ext_resource type="Texture2D" uid="uid://slpg8ih660sf" path="res://assets/Enemie Assets/Enemy Two Official/Run/skeleton-Enemy Two-Run_29.png" id="206_joaix"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7ie47"]
-radius = 44.0
-height = 262.0
+radius = 33.0
+height = 218.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_g1yvr"]
 animations = [{
@@ -869,10 +869,10 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2ciiw"]
-radius = 189.0
+radius = 152.0033
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pqpiv"]
-size = Vector2(80, 259)
+size = Vector2(80, 199.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ciiw"]
 
@@ -881,32 +881,32 @@ position = Vector2(55, 1)
 script = ExtResource("1_pqpiv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(58, -112)
+position = Vector2(59, -110)
 shape = SubResource("CapsuleShape2D_7ie47")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(96, -133)
-scale = Vector2(0.5807915, 0.6100629)
+position = Vector2(89, -124)
+scale = Vector2(0.46671474, 0.48532495)
 sprite_frames = SubResource("SpriteFrames_g1yvr")
 animation = &"arm cannon"
 
 [node name="DetectionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(57, -146)
+position = Vector2(57, -113)
 shape = SubResource("CircleShape2D_2ciiw")
 
 [node name="HurtboxArea2D" type="Area2D" parent="."]
 collision_layer = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxArea2D"]
-position = Vector2(57, -115)
+position = Vector2(57, -109)
 shape = SubResource("RectangleShape2D_pqpiv")
 
 [node name="HitboxArea2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxArea2D"]
-position = Vector2(-23, -162)
+position = Vector2(-4, -137)
 shape = SubResource("RectangleShape2D_2ciiw")
 
 [node name="AttackCooldownTimer" type="Timer" parent="."]

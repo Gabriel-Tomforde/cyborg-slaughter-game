@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://ilx0fw0b7501"]
+[gd_scene load_steps=16 format=4 uid="uid://ilx0fw0b7501"]
 
 [ext_resource type="Texture2D" uid="uid://bpmkbjtri6l4d" path="res://assets/building_background.png" id="1_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://ucn8adbeenir" path="res://assets/tileset_v4.png" id="1_yqjtg"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://t4m82d0mnmun" path="res://scripting/pause_menu.gd" id="8_gee14"]
 [ext_resource type="Script" uid="uid://d3fptr8ysupjt" path="res://scripting/game_over_menu.gd" id="9_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://bu00xbk6jus21" path="res://scenes/boss.tscn" id="10_vtaks"]
+[ext_resource type="AudioStream" uid="uid://f58nl5gfc48r" path="res://scenes/ambiencecyborg.ogg" id="11_kvpfn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lbhrr"]
 texture = ExtResource("1_lnu2h")
@@ -7995,3 +7996,8 @@ text = "QUIT TO MENU"
 
 [node name="Boss" parent="." instance=ExtResource("10_vtaks")]
 position = Vector2(4421, 122)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_kvpfn")
+volume_db = 1.0
+autoplay = true
