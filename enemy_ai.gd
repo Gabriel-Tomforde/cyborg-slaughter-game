@@ -34,11 +34,15 @@ enum State { IDLE, CHASE, ATTACK }
 @onready var detection_area: Area2D = $DetectionArea
 @onready var attack_cooldown_timer: Timer = $AttackCooldownTimer
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var sfx_player: AudioStreamPlayer2D = $SFXPlayer
 
 @export var move_speed: float = 80.0
 @export var attack_range: float = 180.0   # how close before it stops and swings
 @export var attack_cooldown: float = 1.0  # seconds between combos (not between individual hits)
 @export var max_health: int = 20
+
+# --- Attack sound effects (one per combo hit, same order as ATTACK_ANIMS) ---
+@export var attack_sfx: Array[AudioStream] = []
 
 # --- Battery drop ---
 @export var battery_pickup_scene: PackedScene  # assign BatteryPickup.tscn in the Inspector
@@ -101,7 +105,7 @@ func _physics_process(delta: float) -> void:
 
 	match state:
 		State.IDLE:
-			velocity = Vector2.ZERO
+			velocity.x = 0
 			sprite.play(IDLE_ANIM)
 
 		State.CHASE:
@@ -112,18 +116,17 @@ func _physics_process(delta: float) -> void:
 			var distance := global_position.distance_to(player.global_position)
 
 			if distance <= attack_range:
-				velocity = Vector2.ZERO
+				velocity.x = 0
 				if can_attack:
 					_start_combo()
 			else:
-				var to_player := player.global_position - global_position
-				var direction := to_player.normalized()
-				velocity = direction * move_speed
-				_face_direction(sign(to_player.x))
+				var horizontal_direction: float = sign(player.global_position.x - global_position.x)
+				velocity.x = horizontal_direction * move_speed
+				_face_direction(horizontal_direction)
 				sprite.play(WALK_ANIM)
 
 		State.ATTACK:
-			velocity = Vector2.ZERO  # stand still through the whole combo
+			velocity.x = 0  # stand still through the whole combo
 
 	move_and_slide()
 
@@ -148,7 +151,14 @@ func _play_attack(step: int) -> void:
 	combo_step = step
 	sprite.play(ATTACK_ANIMS[step - 1])
 	_update_hitbox_for_attack(step)
+	_play_attack_sfx(step)
 	enable_hitbox()
+
+
+func _play_attack_sfx(step: int) -> void:
+	if step - 1 < attack_sfx.size() and attack_sfx[step - 1] != null:
+		sfx_player.stream = attack_sfx[step - 1]
+		sfx_player.play()
 
 
 func _update_hitbox_for_attack(step: int) -> void:

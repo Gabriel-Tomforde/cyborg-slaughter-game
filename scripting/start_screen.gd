@@ -5,27 +5,54 @@ extends Control
 # ---------------------------------------------------------
 # Scene setup:
 #
-# StartScreen (Control)             <- this script, anchored full-rect
-# ├── Background (TextureRect)      <- title_screen_background.png,
-# │                                    anchored full-rect, Expand Mode set
-# │                                    to "Keep Aspect Covered"
-# └── PressStartLabel (Label)       <- "Press Any Key to Start"
+# StartScreen (Control)                <- this script, Full Rect
+# ├── Background (TextureRect)         <- title_screen_background.png, Full Rect
+# ├── ButtonContainer (VBoxContainer)  <- centered on screen
+# │   ├── StartButton (Button)
+# │   ├── CreditsButton (Button)
+# │   └── ExitButton (Button)
+# └── CreditsPanel (Control)           <- Full Rect, hidden by default
+#     ├── DimBackground (ColorRect)    <- Full Rect, semi-transparent black
+#     └── VBoxContainer                <- centered
+#         ├── CreditsLabel (Label)     <- your credits text
+#         └── BackButton (Button)
 #
 # Set this scene as your project's Main Scene (Project Settings > General >
-# Application > Run > Main Scene) so it's the first thing that loads.
+# Application > Run > Main Scene).
 #
 # Update next_scene_path below to point at your actual level/game scene.
+# No signal connections needed in the editor - buttons are wired in code.
 # ---------------------------------------------------------
 
-@export var next_scene_path: String = "res://game.tscn"  # change to your level's actual path
+@onready var start_button: Button = $ButtonContainer/StartButton
+@onready var credits_button: Button = $ButtonContainer/CreditsButton
+@onready var exit_button: Button = $ButtonContainer/ExitButton
+@onready var credits_panel: Control = $CreditsPanel
+@onready var back_button: Button = $CreditsPanel/VBoxContainer/BackButton
+
+@export var next_scene_path: String = "res://Game.tscn"  # change to your level's actual path
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed:
-		_start_game()
-	elif event is InputEventMouseButton and event.pressed:
-		_start_game()
+func _ready() -> void:
+	credits_panel.visible = false
+
+	start_button.pressed.connect(_on_start_pressed)
+	credits_button.pressed.connect(_on_credits_pressed)
+	exit_button.pressed.connect(_on_exit_pressed)
+	back_button.pressed.connect(_on_back_pressed)
 
 
-func _start_game() -> void:
+func _on_start_pressed() -> void:
 	get_tree().change_scene_to_file(next_scene_path)
+
+
+func _on_credits_pressed() -> void:
+	credits_panel.visible = true
+
+
+func _on_back_pressed() -> void:
+	credits_panel.visible = false
+
+
+func _on_exit_pressed() -> void:
+	get_tree().quit()

@@ -34,11 +34,15 @@ enum State { IDLE, CHASE, ATTACK }
 @onready var detection_area: Area2D = $DetectionArea
 @onready var attack_cooldown_timer: Timer = $AttackCooldownTimer
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var sfx_player: AudioStreamPlayer2D = $SFXPlayer
 
 @export var move_speed: float = 80.0
 @export var attack_range: float = 180.0   # how close before it melees instead of shooting
 @export var attack_cooldown: float = 1.0  # seconds between melee combos
-@export var max_health: int = 75         # a lot higher than the regular enemy's 20
+@export var max_health: int = 120         # a lot higher than the regular enemy's 20
+
+# --- Attack sound effects (one per combo hit, same order as ATTACK_ANIMS) ---
+@export var attack_sfx: Array[AudioStream] = []
 
 # --- Cannon attack (ranged, used at mid-range) ---
 @export var cannon_range: float = 500.0        # beyond attack_range, up to this distance
@@ -55,7 +59,7 @@ const IDLE_ANIM := "idle"
 const WALK_ANIM := "run"
 
 const ATTACK_ANIMS := ["Punch", "Kick", "Two handed swing"]
-const ATTACK_DAMAGE := [5, 5, 7]  # noticeably harder-hitting than the regular enemy
+const ATTACK_DAMAGE := [10, 10, 15]  # noticeably harder-hitting than the regular enemy
 
 const ATTACK_REACH := [20.0, 45.0, 35.0]
 const ATTACK_HITBOX_SIZE := [Vector2(16, 20), Vector2(30, 18), Vector2(38, 26)]
@@ -110,7 +114,7 @@ func _physics_process(delta: float) -> void:
 
 	match state:
 		State.IDLE:
-			velocity = Vector2.ZERO
+			velocity.x = 0
 			sprite.play(IDLE_ANIM)
 
 		State.CHASE:
@@ -122,28 +126,28 @@ func _physics_process(delta: float) -> void:
 			var to_player := player.global_position - global_position
 
 			if distance <= attack_range:
-				velocity = Vector2.ZERO
+				velocity.x = 0
 				_face_direction(sign(to_player.x))
 				if can_attack:
 					_start_combo()
 			elif distance <= cannon_range:
-				velocity = Vector2.ZERO
+				velocity.x = 0
 				_face_direction(sign(to_player.x))
 				if can_use_cannon:
 					_start_cannon_attack()
 				elif can_attack:
 					# cannon's on cooldown - close the distance instead of standing idle
-					var direction := to_player.normalized()
-					velocity = direction * move_speed
+					var horizontal_direction: float = sign(to_player.x)
+					velocity.x = horizontal_direction * move_speed
 					sprite.play(WALK_ANIM)
 			else:
-				var direction := to_player.normalized()
-				velocity = direction * move_speed
-				_face_direction(sign(to_player.x))
+				var horizontal_direction: float = sign(to_player.x)
+				velocity.x = horizontal_direction * move_speed
+				_face_direction(horizontal_direction)
 				sprite.play(WALK_ANIM)
 
 		State.ATTACK:
-			velocity = Vector2.ZERO
+			velocity.x = 0
 
 	move_and_slide()
 
@@ -171,7 +175,14 @@ func _play_attack(step: int) -> void:
 	combo_step = step
 	sprite.play(ATTACK_ANIMS[step - 1])
 	_update_hitbox_for_attack(step)
+	_play_attack_sfx(step)
 	enable_hitbox()
+
+
+func _play_attack_sfx(step: int) -> void:
+	if step - 1 < attack_sfx.size() and attack_sfx[step - 1] != null:
+		sfx_player.stream = attack_sfx[step - 1]
+		sfx_player.play()
 
 
 func _update_hitbox_for_attack(step: int) -> void:
