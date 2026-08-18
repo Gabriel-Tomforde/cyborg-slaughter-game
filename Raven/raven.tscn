@@ -1,16 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://gg31xw3nbu3x"]
+[gd_scene load_steps=14 format=3 uid="uid://gg31xw3nbu3x"]
 
 [ext_resource type="PackedScene" uid="uid://8vd3rosyxywh" path="res://Raven/animations/animations right.tscn" id="1_evje6"]
 [ext_resource type="Script" uid="uid://bwo3naydl2loy" path="res://Raven/raven.gd" id="1_q0iu1"]
 [ext_resource type="PackedScene" uid="uid://dmbk2bhifywnf" path="res://Raven/animations/animations_left.tscn" id="2_2p6f2"]
+[ext_resource type="PackedScene" uid="uid://bfuj5b7gonvaa" path="res://scenes/CannonProjectile.tscn" id="2_bt4hg"]
+[ext_resource type="AudioStream" uid="uid://0852w3vg6hss" path="res://scenes/windhit1.wav" id="2_ggqcp"]
+[ext_resource type="AudioStream" uid="uid://cy51eimjr2peg" path="res://scenes/melee5.wav" id="2_xfbgu"]
+[ext_resource type="AudioStream" uid="uid://dpjqrcxwiwa6e" path="res://scenes/windhit2.wav" id="3_1wd5k"]
+[ext_resource type="AudioStream" uid="uid://dphctqltr050y" path="res://scenes/melee1.wav" id="3_k64m1"]
+[ext_resource type="AudioStream" uid="uid://d228lcsm5qolf" path="res://scenes/windhit3.wav" id="4_3xiwl"]
+[ext_resource type="AudioStream" uid="uid://c7kwb6vq2014m" path="res://scenes/melee2.wav" id="4_ioeul"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q0iu1"]
+size = Vector2(52, 45)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_prpg4"]
+size = Vector2(130, 450)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bt4hg"]
 size = Vector2(53, 413)
 
 [node name="Raven" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_q0iu1")
+swing_sfx = Array[AudioStream]([ExtResource("2_ggqcp"), ExtResource("3_1wd5k"), ExtResource("4_3xiwl")])
+hit_sfx = Array[AudioStream]([ExtResource("2_xfbgu"), ExtResource("3_k64m1"), ExtResource("4_ioeul")])
+cannon_projectile_scene = ExtResource("2_bt4hg")
 
 [node name="SpriteRight" parent="." instance=ExtResource("1_evje6")]
 position = Vector2(5, -11)
@@ -19,16 +33,33 @@ position = Vector2(5, -11)
 position = Vector2(50, -15)
 
 [node name="HitboxArea2D" type="Area2D" parent="."]
-position = Vector2(107, 4)
+position = Vector2(138, -57)
+collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxArea2D"]
+position = Vector2(38, -10)
 shape = SubResource("RectangleShape2D_q0iu1")
+
+[node name="HurtboxArea2D" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxArea2D"]
+position = Vector2(24, 39)
+shape = SubResource("RectangleShape2D_prpg4")
 
 [node name="ComboTimer" type="Timer" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(28, 54)
 shape = SubResource("RectangleShape2D_bt4hg")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 zoom = Vector2(0.6, 0.6)
+
+[node name="SwingSFXPlayer" type="AudioStreamPlayer2D" parent="."]
+
+[node name="HitSFXPlayer" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="area_entered" from="HitboxArea2D" to="." method="_on_hitbox_area_2d_area_entered"]

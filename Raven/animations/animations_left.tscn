@@ -1292,4 +1292,4 @@ animations = [{
 
 [node name="LeftAnimations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_d7hek")
-animation = &"two handed swing"
+animation = &"die"

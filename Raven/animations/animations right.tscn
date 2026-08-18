@@ -1376,5 +1376,7 @@ animations = [{
 
 [node name="RightAnimations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_j3b22")
-animation = &"die"
+animation = &"punch"
+frame = 41
+frame_progress = 1.0
 flip_h = true

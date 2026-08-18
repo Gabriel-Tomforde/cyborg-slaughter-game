@@ -1,0 +1,96 @@
+[gd_scene load_steps=3 format=3 uid="uid://bogmla07hsq7h"]
+
+[ext_resource type="Script" uid="uid://bgrg2lq7baiij" path="res://scripting/start_screen.gd" id="1_o7i0r"]
+[ext_resource type="Texture2D" uid="uid://c4x64fd7e7nw1" path="res://assets/title_screen_background.png" id="1_tx5wa"]
+
+[node name="StartScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o7i0r")
+next_scene_path = "res://scenes/game.tscn"
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_tx5wa")
+
+[node name="ButtonContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -449.0
+offset_top = -35.0
+offset_right = -148.0
+offset_bottom = 100.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="StartButton" type="Button" parent="ButtonContainer"]
+layout_mode = 2
+text = "START"
+
+[node name="CreditsButton" type="Button" parent="ButtonContainer"]
+layout_mode = 2
+text = "CREDITS"
+
+[node name="ExitButton" type="Button" parent="ButtonContainer"]
+layout_mode = 2
+text = "EXIT GAME"
+
+[node name="CreditsPanel" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DimBackground" type="ColorRect" parent="CreditsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.8627451)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreditsPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -149.5
+offset_top = -147.5
+offset_right = 149.5
+offset_bottom = 147.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CreditsPanel/VBoxContainer"]
+layout_mode = 2
+text = "CREDITS
+Adam Ertle - Engineer
+
+Manuel Zarate - Level Design
+
+Gabriel Tomforde - Character/Sprite Design + Animation
+
+Raymond Martinez - Level Design + Narrative
+"
+
+[node name="BackButton" type="Button" parent="CreditsPanel/VBoxContainer"]
+layout_mode = 2
+text = "BACK"
