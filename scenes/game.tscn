@@ -18472,3 +18472,12 @@ enemy_scene = ExtResource("5_p57ef")
 [node name="EncounterTrigger2" parent="." instance=ExtResource("4_iywne")]
 position = Vector2(4064, -131)
 enemy_scene = ExtResource("5_p57ef")
+
+[node name="EncounterTrigger3" parent="." instance=ExtResource("4_iywne")]
+position = Vector2(7069, 1273)
+
+[node name="EncounterTrigger4" parent="." instance=ExtResource("4_iywne")]
+position = Vector2(11556, -116)
+
+[node name="EncounterTrigger5" parent="." instance=ExtResource("4_iywne")]
+position = Vector2(14269, -141)

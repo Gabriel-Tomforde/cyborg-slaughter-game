@@ -624,6 +624,7 @@ radius = 208.28
 size = Vector2(37, 37)
 
 [node name="Enemyai" type="CharacterBody2D"]
+scale = Vector2(0.51501024, 0.45843905)
 script = ExtResource("1_an8qu")
 max_health = 100
 
